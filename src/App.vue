@@ -1,23 +1,29 @@
 <template>
   <div id="app">
-    <AppHeader @navigate="currentPage = $event" />
+    <AppHeader :cartCount="cartQuantity" @navigate="currentPage = $event" />
+    <!-- <AppBanner /> -->
     <main>
-      <!-- Conditionally Render Pages -->
-      <Home v-if="currentPage === 'home'" />
-      <AppMenu v-if="currentPage === 'menu'" @add-to-cart="handleAddToCart" />
+      <AppHome v-if="currentPage === 'home'" @navigate="currentPage = $event"/>
+      <AppMenu v-if="currentPage === 'menu'" @add-to-cart="handleAddToCart" />      
+      <CartPage
+        v-if="currentPage === 'cart'"
+        :cartItems="cartItems"
+        :total="total"
+        @clear-cart="clearCart"
+      />
     </main>
-    <AppBanner />
-    <AppCart :cartItems="cartItems" :total="total" @increase-quantity="handleIncreaseQuantity" @decrease-quantity="handleDecreaseQuantity" @checkout="handleCheckout"/>
+    <AppCart v-if = "currentPage != 'cart'" :cartItems="cartItems" :total="total" @increase-quantity="handleIncreaseQuantity" @decrease-quantity="handleDecreaseQuantity" @checkout="handleCheckout"/>
     <AppFooter />
   </div>
 </template>
 
 <script>
 import AppHeader from "./components/Header.vue";
-import Home from "./components/Home.vue";
+import AppHome from "./components/Home.vue";
 import AppBanner from "./components/Banner.vue";
 import AppMenu from "./components/Menu.vue";
 import AppCart from "./components/Cart.vue";
+import CartPage from "./components/CartPage.vue";
 import AppFooter from "./components/Footer.vue";
 
 export default {
@@ -25,8 +31,9 @@ export default {
   components: {
     AppHeader,
     AppBanner,
-    Home,
+    AppHome,
     AppMenu,
+    CartPage,
     AppCart,
     AppFooter,
   },
@@ -38,7 +45,11 @@ export default {
   },
   computed: {
     total() {
-      return this.cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0).toFixed(2);
+      return this.cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
+    },
+
+    cartQuantity() {
+      return this.cartItems.reduce((sum, item) => sum + item.quantity, 0);
     },
   },
   methods: {
@@ -69,6 +80,10 @@ export default {
     handleCheckout() {
       this.cartItems = [];
       alert("Order Placed Successfully!");
+    },
+    clearCart() {
+      this.cartItems = [];
+      this.currentPage = "home"; // Redirect to home after checkout
     },
   },
   created() {
