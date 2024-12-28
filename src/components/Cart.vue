@@ -19,7 +19,7 @@
         >
           <div class="flex items-center">
             <img 
-            :src="item.image"
+            :src="item.img"
             :alt="item.name"
             class="w-12 h-12 object-cover rounded mr-2"/>
             <div>
