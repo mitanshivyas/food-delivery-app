@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-gray-800 text-white p-4 flex justify-between items-center">
+  <header class="bg-gray-800 text-white p-4 flex justify-between items-center fixed top-0 w-full z-50">
     <div class="container mx-auto flex justify-between items-center">
       <h1 class="text-xl font-bold">Food Delivery</h1>
       <nav class="flex space-x-4 items-center">

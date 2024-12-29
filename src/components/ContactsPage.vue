@@ -20,7 +20,7 @@
           </div>
   
           <!-- Feedback Form -->
-          <form @submit.prevent="handleSubmit" class="space-y-4 bg-gray-100 p-6 rounded shadow">
+          <form @submit.prevent="submitFeedback" class="space-y-4 bg-gray-100 p-6 rounded shadow">
             <div>
               <label for="name" class="block text-sm font-bold mb-1">Name</label>
               <input
@@ -67,6 +67,13 @@
               Submit Feedback
             </button>
           </form>
+          <div v-if="feedbackSubmitted" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white p-6 rounded shadow-lg text-center">
+                <p>Feedback submitted successfully!</p>
+                <button @click="closeFeedbackModal" class="bg-blue-500 text-white px-4 py-2 rounded mt-4">OK</button>
+            </div>
+          </div>
+
         </div>
       </section>
   
@@ -93,6 +100,7 @@ export default {
   name: "ContactsPage",
   data() {
     return {
+      feedbackSubmitted: false,
       formData: {
         name: "",
         email: "",
@@ -102,10 +110,21 @@ export default {
     };
   },
   methods: {
-    handleSubmit() {
-      alert("Thank you for your feedback!");
-      console.log("Form Data:", this.formData);
-      this.formData = { name: "", email: "", orderId: "", message: "" }; // Reset the form
+    submitFeedback() {
+      if (this.formData.name && this.formData.email && this.formData.message) {
+        this.feedbackSubmitted = true;
+      }
+      console.log(this.formData);
+    },
+    closeFeedbackModal() {
+      this.feedbackSubmitted = false;
+      // Reset form data
+      this.formData = {
+        name: "",
+        email: "",
+        orderId: "",
+        message: "",
+      };
     },
   },
 };

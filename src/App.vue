@@ -2,7 +2,7 @@
   <div id="app">
     <AppHeader :cartCount="cartQuantity" @navigate="currentPage = $event" />
     <!-- <AppBanner /> -->
-    <main>
+    <main class="pt-[64px]"> <!-- Add top padding equal to the header height -->
       <AppHome v-if="currentPage === 'home'" @navigate="currentPage = $event"/>
       <AppMenu v-if="currentPage === 'menu'" @add-to-cart="handleAddToCart" />    
       <ContactsPage v-if="currentPage === 'contact'" />
@@ -11,7 +11,9 @@
         :cartItems="cartItems"
         :total="total"
         @clear-cart="clearCart"
+        @clear-cartb = "clearCartb"
         @checkout="handleCheckout"
+        @increase-quantity="handleIncreaseQuantity" @decrease-quantity="handleDecreaseQuantity"
       />
     </main>
     <AppCart v-if = "currentPage != 'cart'" :cartItems="cartItems" :total="total" @increase-quantity="handleIncreaseQuantity" @decrease-quantity="handleDecreaseQuantity" @checkout="handleCheckout" @clear-cart="clearCart"/>
@@ -68,7 +70,9 @@ export default {
     },
     clearCart() {
       this.cartItems = [];
-      alert("Cart has been cleared!");
+    },
+    clearCartb() {
+      this.cartItems = [];
     },
     handleIncreaseQuantity(item) {
       const cartItem = this.cartItems.find((cartItem) => cartItem.id === item.id);

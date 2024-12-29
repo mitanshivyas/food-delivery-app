@@ -12,3 +12,21 @@ nav {
   align-items: center; /* Vertically center items */
   gap: 1rem; /* Add space between items */
 }
+
+html,
+body {
+  height: 100%; /* Ensure the body takes full height of the viewport */
+  margin: 0; /* Remove default margin */
+  display: flex;
+  flex-direction: column;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%; /* Ensure the app takes at least the full viewport height */
+}
+
+main {
+  flex: 1; /* Push footer to the bottom */
+}

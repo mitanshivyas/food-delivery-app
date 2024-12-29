@@ -55,7 +55,7 @@
         </button>
         <button
           v-if="cartItems.length"
-          @click="$emit('clear-cart')"
+          @click="handleClearCart"
           class="bg-red-500 text-white px-4 py-2 rounded mt-2"
         >
           Clear Cart
@@ -64,6 +64,15 @@
       </div>
     </div>
   </aside>
+  <div v-if="showConfirmation" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white p-6 rounded shadow-lg text-center">
+        <p>Are you sure you want to clear the cart?</p>
+        <div class="mt-4">
+          <button @click="confirmClearCart" class="bg-red-500 text-white px-4 py-2 rounded mr-2">Yes</button>
+          <button @click="cancelClearCart" class="bg-gray-300 px-4 py-2 rounded">No</button>
+        </div>
+      </div>
+    </div>
 </template>
 
 <style scoped>
@@ -81,12 +90,23 @@ export default {
   },
   data() {
     return {
-      collapsed: false, // State to control collapse/expand
+      collapsed: false,
+      showConfirmation: false, 
     };
   },
   methods: {
     toggleCollapse() {
       this.collapsed = !this.collapsed;
+    },
+    handleClearCart() {
+      this.showConfirmation = true;
+    },
+    confirmClearCart() {
+      this.$emit('clear-cart');
+      this.showConfirmation = false;
+    },
+    cancelClearCart() {
+      this.showConfirmation = false;
     },
   },
 };
