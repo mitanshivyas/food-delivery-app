@@ -25,6 +25,12 @@
           >
             Checkout
           </button>
+          <button
+            class="bg-red-500 text-white px-6 py-3 rounded mt-4 hover:bg-red-600"
+            @click="$emit('clear-cart')"
+        >
+            Clear Cart
+            </button>
         </div>
       </div>
       <div v-else class="text-center">
@@ -54,4 +60,6 @@
     },
   };
   </script>
+
+  
   

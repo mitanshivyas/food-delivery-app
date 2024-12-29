@@ -31,7 +31,8 @@ module.exports = {
 
   // Development server options
   devServer: {
-    host: 'localhost',
+    // host: 'localhost',
+    host: '0.0.0.0', // Listen on all interfaces
     port: 8080,
     open: true,
   },
