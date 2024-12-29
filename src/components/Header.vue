@@ -14,7 +14,10 @@
                 Menu
               </button>
             </li>
-          <li><a href="#" class="hover:text-blue-500">Contact</a></li>
+          <li><button @click="$emit('navigate', 'contact')" class="hover:text-gray-400">
+                Contact
+              </button>
+          </li>
           <li class="relative">
               <button @click="$emit('navigate', 'cart')" class="relative">
                 <font-awesome-icon icon="shopping-cart" class="text-xl" />

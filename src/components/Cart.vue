@@ -53,6 +53,13 @@
         >
           Checkout
         </button>
+        <button
+          v-if="cartItems.length"
+          @click="$emit('clear-cart')"
+          class="bg-red-500 text-white px-4 py-2 rounded mt-2"
+        >
+          Clear Cart
+        </button>
         <p v-else class="text-gray-400 mt-4">Your cart is empty.</p>
       </div>
     </div>

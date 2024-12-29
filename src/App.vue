@@ -4,15 +4,17 @@
     <!-- <AppBanner /> -->
     <main>
       <AppHome v-if="currentPage === 'home'" @navigate="currentPage = $event"/>
-      <AppMenu v-if="currentPage === 'menu'" @add-to-cart="handleAddToCart" />      
+      <AppMenu v-if="currentPage === 'menu'" @add-to-cart="handleAddToCart" />    
+      <ContactsPage v-if="currentPage === 'contact'" />
       <CartPage
         v-if="currentPage === 'cart'"
         :cartItems="cartItems"
         :total="total"
         @clear-cart="clearCart"
+        @checkout="handleCheckout"
       />
     </main>
-    <AppCart v-if = "currentPage != 'cart'" :cartItems="cartItems" :total="total" @increase-quantity="handleIncreaseQuantity" @decrease-quantity="handleDecreaseQuantity" @checkout="handleCheckout"/>
+    <AppCart v-if = "currentPage != 'cart'" :cartItems="cartItems" :total="total" @increase-quantity="handleIncreaseQuantity" @decrease-quantity="handleDecreaseQuantity" @checkout="handleCheckout" @clear-cart="clearCart"/>
     <AppFooter />
   </div>
 </template>
@@ -25,6 +27,7 @@ import AppMenu from "./components/Menu.vue";
 import AppCart from "./components/Cart.vue";
 import CartPage from "./components/CartPage.vue";
 import AppFooter from "./components/Footer.vue";
+import ContactsPage from "./components/ContactsPage.vue";
 
 export default {
   name: "App",
@@ -36,6 +39,7 @@ export default {
     CartPage,
     AppCart,
     AppFooter,
+    ContactsPage
   },
   data() {
     return {
@@ -62,6 +66,10 @@ export default {
         this.cartItems.push({...item, quantity: 1});
       }
     },
+    clearCart() {
+      this.cartItems = [];
+      alert("Cart has been cleared!");
+    },
     handleIncreaseQuantity(item) {
       const cartItem = this.cartItems.find((cartItem) => cartItem.id === item.id);
       if(cartItem) {
@@ -80,10 +88,6 @@ export default {
     handleCheckout() {
       this.cartItems = [];
       alert("Order Placed Successfully!");
-    },
-    clearCart() {
-      this.cartItems = [];
-      this.currentPage = "home"; // Redirect to home after checkout
     },
   },
   created() {

@@ -8,6 +8,16 @@
       <h2 class="text-3xl text-white font-bold">Our Menu</h2>
     </section>
 
+    <section class="container mx-auto py-4">
+      <input
+        v-model="searchQuery"
+        type="text"
+        placeholder="Search for items..."
+        class="w-full border border-gray-300 rounded p-2"
+        @input="searchItems"
+      />
+    </section>
+
     <!-- Categories Section -->
     <section class="container mx-auto py-8">
       <div class="flex space-x-4 justify-center mb-8">
@@ -15,9 +25,13 @@
           v-for="category in categories"
           :key="category"
           @click="fetchMenu(category)"
-          class="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300"
+          class="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300 flex items-center justify-center"
         >
-          {{ category }}
+          <img
+            :src="categoryIcons[category]"
+            :alt="category"
+            class="w-8 h-8"
+          />
         </button>
       </div>
 
@@ -61,11 +75,18 @@ export default {
     return {
       menuItems: [],
       categories: ["pizzas", "desserts"], // Categories available in the API
+      selectedCategory: "pizzas",
+      searchQuery: "",
       isLoading: false,
+      categoryIcons: {
+      pizzas: "https://cdn-icons-png.flaticon.com/512/3132/3132693.png",
+      desserts: "https://i.postimg.cc/8c0Tdzp4/dessert.png",
+      },
     };
   },
   methods: {
-    async fetchMenu(category = 'pizzas') {
+    async fetchMenu(category) {
+      // Fetch a single category's menu items
       this.isLoading = true;
       try {
         const response = await fetch(`https://pizza-and-desserts.p.rapidapi.com/${category}`, {
@@ -77,7 +98,8 @@ export default {
         });
         const data = await response.json();
         console.log(`Fetched data for ${category}:`, data);
-        this.menuItems = data || [];
+        this.menuItems = data; // Show only the selected category's items
+        this.selectedCategory = category;
       } catch (error) {
         console.error(`Error fetching ${category}:`, error);
         this.menuItems = [];
@@ -85,9 +107,35 @@ export default {
         this.isLoading = false;
       }
     },
+    async fetchAllCategories() {
+      // Fetch all categories at once
+      this.isLoading = true;
+      try {
+        const allItems = [];
+        for (const category of this.categories) {
+          const response = await fetch(`https://pizza-and-desserts.p.rapidapi.com/${category}`, {
+            method: "GET",
+            headers: {
+              "x-rapidapi-key": "1bf1ce62e0msh1196b9fd7ccd351p147dc3jsn940fa904a174",
+              "x-rapidapi-host": "pizza-and-desserts.p.rapidapi.com",
+            },
+          });
+          const data = await response.json();
+          allItems.push(...data);
+          console.log(`Fetched data for ${category}:`, data);
+        }
+        this.allItems = allItems; // Store all items for search functionality
+        this.menuItems = [...this.allItems]; // Initially display all items
+      } catch (error) {
+        console.error("Error fetching all categories:", error);
+        this.menuItems = [];
+      } finally {
+        this.isLoading = false;
+      }
+    },
     addToCart(item) {
       const cartItem = {
-        id: item.id,
+        id: `${this.selectedCategory}-${item.id}`,
         name: item.name,
         description: item.description || "No description available",
         price: item.price,
@@ -96,9 +144,19 @@ export default {
       };
       this.$emit("add-to-cart", cartItem);
     },
+    searchItems() {
+      const query = this.searchQuery.toLowerCase();
+      this.menuItems = this.allItems.filter(item =>
+        item.name.toLowerCase().includes(query) ||
+        (item.description && item.description.toLowerCase().includes(query))
+      );
+    },
   },
   created() {
     this.fetchMenu("pizzas"); // Fetch default category
+  },
+  created() {
+    this.fetchAllCategories();
   },
 };
 </script>
