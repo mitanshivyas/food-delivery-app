@@ -8,6 +8,11 @@
       <h2 class="text-3xl text-white font-bold">Welcome to Food Delivery!</h2>
     </section>
 
+    <div>
+      <h1 class="text-center text-3xl font-bold mb-8">Welcome to Our Food Delivery App</h1>
+      <PizzaCarousel />
+    </div>
+
     <!-- Call to Action Card -->
     <div class="flex-1 flex items-center justify-center">
       <div class="bg-yellow-400 p-20 rounded shadow-md text-center">
@@ -15,7 +20,7 @@
         <p class="mb-4">Order your favorite meals now!</p>
         <button
           @click="$emit('navigate', 'menu')"
-          class="bg-gray-800 text-white px-6 py-3 rounded hover:bg-gray-700"
+          class="bg-gray-800 text-white px-6 py-3 rounded hover:bg-gray-700 mr-2 shadow-md hover:shadow-lg transition duration-50 ease-in-out transform hover:scale-110"
         >
           Order Now
         </button>
@@ -25,7 +30,12 @@
 </template>
 
 <script>
+import PizzaCarousel from "./PizzaCarousel.vue";
+
 export default {
   name: "Home",
+  components: {
+    PizzaCarousel,
+  },
 };
 </script>

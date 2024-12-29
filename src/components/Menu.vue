@@ -9,13 +9,15 @@
     </section>
 
     <section class="container mx-auto py-4">
-      <input
-        v-model="searchQuery"
-        type="text"
-        placeholder="Search for items..."
-        class="w-full border border-gray-300 rounded p-2"
-        @input="searchItems"
-      />
+      <div class="w-full border border-gray-300 rounded p-2 shadow-md hover:shadow-lg transition duration-50 ease-in-out transform hover:scale-110">
+        <input
+          v-model="searchQuery"
+          type="text"
+          placeholder="Search for items..."
+          class="w-full focus:outline-none"
+          @input="searchItems"
+        />
+      </div>
     </section>
 
     <!-- Categories Section -->
@@ -25,7 +27,7 @@
           v-for="category in categories"
           :key="category"
           @click="fetchMenu(category)"
-          class="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300 flex items-center justify-center"
+          class="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300 flex items-center justify-center mr-2 shadow-md hover:shadow-lg transition duration-50 ease-in-out transform hover:scale-110"
         >
           <img
             :src="categoryIcons[category]"
@@ -51,7 +53,7 @@
           <p class="text-gray-600">{{ item.description }}</p>
           <p class="font-bold">${{ item.price }}</p>
           <button
-            class="bg-yellow-400 text-white px-4 py-2 rounded mt-2"
+            class="bg-yellow-400 text-white px-4 py-2 rounded mt-2 mr-2 shadow-md hover:shadow-lg transition duration-50 ease-in-out transform hover:scale-110"
             @click="addToCart(item)"
           >
             Add to Cart

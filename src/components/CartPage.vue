@@ -48,9 +48,9 @@
       <div v-if="showConfirmation" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white p-6 rounded shadow-lg text-center">
             <p>Are you sure you want to clear the cart?</p>
-            <div class="mt-4">
-            <button @click="confirmClearCart" class="bg-red-500 text-white px-4 py-2 rounded mr-2">Yes</button>
-            <button @click="cancelClearCart" class="bg-gray-300 px-4 py-2 rounded">No</button>
+            <div class="mt-4 ">
+            <button @click="confirmClearCart" class="bg-red-500 text-white px-4 py-2 rounded mr-2 p-2 shadow-md hover:shadow-lg transition duration-50 ease-in-out transform hover:scale-110">Yes</button>
+            <button @click="cancelClearCart" class="bg-gray-300 px-4 py-2 rounded p-2 shadow-md hover:shadow-lg transition duration-50 ease-in-out transform hover:scale-110">No</button>
             </div>
         </div>
     </div>
