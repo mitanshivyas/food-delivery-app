@@ -13,7 +13,7 @@
     <!-- Cart Content -->
     <div v-if="!collapsed" class="flex flex-col">
       <!-- Scrollable Items Section -->
-      <div class="flex-grow overflow-y-auto p-4" :style="{ maxHeight: 'calc(70vh - 120px)' }">
+      <div class="flex-grow overflow-y-auto p-4 scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-800" :style="{ maxHeight: 'calc(70vh - 120px)' }">
         <h3 class="text-xl font-bold mb-4">Your Cart</h3>
         <ul>
           <li
@@ -98,24 +98,6 @@ aside {
 
 .flex-grow {
   overflow-y: auto;
-}
-
-ul::-webkit-scrollbar {
-  width: 8px;
-}
-
-ul::-webkit-scrollbar-track {
-  background: #2d3748;
-  border-radius: 4px;
-}
-
-ul::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 4px;
-}
-
-ul::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.7);
 }
 
 </style>

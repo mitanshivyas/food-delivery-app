@@ -16,6 +16,7 @@
     "minimatch": "^10.0.1",
     "normalize-package-data": "^7.0.0",
     "q": "^2.0.3",
+    "tailwind-scrollbar": "^3.1.0",
     "vue-router": "^4.5.0"
   },
   "devDependencies": {

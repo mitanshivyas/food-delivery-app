@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  @apply scrollbar scrollbar-thumb-gray-500 scrollbar-track-gray-800;
+}
+
 .bg-cover {
   background-size: cover;
   background-position: center;
@@ -43,22 +47,4 @@ header + section,
 section:first-of-type {
   margin: 0;
   padding: 0;
-}
-
-ul::-webkit-scrollbar {
-  width: 8px;
-}
-
-ul::-webkit-scrollbar-track {
-  background: #2d3748;
-  border-radius: 4px;
-}
-
-ul::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 4px;
-}
-
-ul::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.7);
 }
