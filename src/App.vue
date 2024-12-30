@@ -128,8 +128,9 @@ body {
 }
 
 .content-container {
-  flex: 1; /* Push the footer to the bottom when content is short */
-  padding: 20px;
+  flex: 1; /* Ensures it stretches to take up remaining space */
+  display: flex;
+  flex-direction: column;
 }
 
 footer {
@@ -140,3 +141,4 @@ footer {
   margin-top: auto; /* Allow footer to move to the end of content when scrolling */
 }
 </style>
+

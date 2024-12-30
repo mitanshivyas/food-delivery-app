@@ -15,7 +15,7 @@
     </div>
     
     <!-- How it Works Section -->
-    <section class="how-it-works">
+    <section class="hidden sm:block md:hidden lg:block how-it-works">
       <h2 class="how-it-works-title">How it Works</h2>
       <div class="steps-container">
         <div class="step">
@@ -38,24 +38,26 @@
         </div>
       </div>
     </section>
-
-    <!-- Pizza Carousel Section -->
-    <div class="hidden sm:block md:hidden lg:block carousel-right">
-      <!--   -->
-      <PizzaCarousel />
-    </div>
+    <!-- Call to Action Card -->
+    <section class="page">
+      <div class="order-now-section  p-14 rounded-lg shadow-lg text-center items-start">
+        <h3 class="Hungry text-3xl font-poppins font-bold mb-4 text-center">Hungry?</h3>
+        <p class="tag text-lg font-poppins mb-6">Order your favorite meals now!</p>
+        <button
+          @click="navigateTo('/menu')"
+          class="bg-pink-500 text-white px-6 py-3 rounded hover:shadow-lg transition duration-50 ease-in-out transform hover:scale-110 hover:bg-pink-600"
+        >
+          Order Now
+        </button> 
+      </div>
+      <!-- Pizza Carousel Section -->
+      <div class="hidden sm:block md:hidden lg:block carousel-right">
+        <!--   -->
+        <PizzaCarousel />
+      </div>
+    </section>
   </section>
-  <!-- Call to Action Card -->
-  <div class="order-now-section p-10 rounded-lg shadow-lg text-center">
-      <h3 class="Hungry text-3xl font-poppins font-bold mb-4">Hungry?</h3>
-      <p class="tag text-lg font-poppins mb-6">Order your favorite meals now!</p>
-      <button
-        @click=" navigateTo('/menu')"
-        class="bg-pink-500 text-white px-6 py-3 rounded hover:shadow-lg transition duration-50 ease-in-out transform hover:scale-110 hover:bg-pink-600"
-      >
-        Order Now
-      </button> 
-    </div>
+
   
 </template>
 
@@ -90,16 +92,17 @@ export default {
 }
 
 .order-now-section {
-  flex: 1; /* Allow the card to occupy equal space */
-  max-width: 400px; /* Set a max width for the card */
-  background-color: #ffddf0; /* Light pink background */
-  padding: 2rem; /* Add padding inside the card */
-  margin-left: 0; /* Align the card to the extreme left */
-  margin-top: 28rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-  border-radius: 0.5rem; /* Rounded corners */
+  max-width: 400px; 
+  background-color: hsl(229, 69%, 87%); 
+  padding: 2rem; 
+  margin-left: auto; 
+  margin-top: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  border-radius: 0.5rem; 
   position: relative;
-  z-index: 1; /* Ensure it appears above other elements */
+  z-index: 1; 
+  float:left;
+  padding-left:10px;
 }
 
 
@@ -113,11 +116,10 @@ export default {
 } */
 
 .carousel-right {
-  position: absolute; /* Position explicitly */
-  top: 170%; /* Push it down */
-  right: 450px; /* Move it to the extreme right */
-  transform: translateY(-50%); /* Center it vertically relative to its parent */
-  width: auto; /* Ensure it doesn’t exceed the container width */
+  position: absolute; 
+  top: 170%; 
+  right: 450px; 
+  transform: translateY(-50%); 
 }
 
 .bg-cover {
@@ -195,7 +197,7 @@ h2 {
   width: 60px;
   height: 60px;
   margin-bottom: 1rem;
-  margin-left: 6rem;
+  margin-left: 10rem;
   align-items: center;
 }
 
@@ -226,5 +228,7 @@ h2 {
     transform: translateY(-10px);
   }
 }
+
+
 </style>
 

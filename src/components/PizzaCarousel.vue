@@ -2,33 +2,36 @@
     <div class="carousel-container-wrapper" style="width: 100%; overflow: visible">
       <div class="relative items-center">
         <!-- Pizza Semicircle -->
-        <div class="carousel-container relative"
-             :style="{ width: '5vw', height: '75vh' }">
+        <div class="carousel-container relative" :style="{ width: '5vw', height: '75vh' }">
           <div
             v-for="(pizza, index) in pizzas"
             :key="index"
-            class="pizza-item absolute bg-cover cursor-pointer transition duration:100 hover:shadow-lg rounded-full hover:bg-pink-300"
+            class="pizza-item absolute bg-cover cursor-pointer transition duration-100 rounded-full"
+            :class="{ 'hover:shadow-lg hover:bg-pink-300': activeIndex !== index }"
             :style="getPizzaStyle(index)"
             @click="setActiveIndex(index)"
           ></div>
         </div>
       </div>
       <!-- Pizza Details -->
-      <div v-if="activeIndex !== null" 
-        class="pizza-details  text-top"
-        :style="{ 
-            top: '-25%', 
-            right: '-70%', 
-            opacity: 1 
+      <div
+        v-if="activeIndex !== null"
+        class="pizza-details text-top"
+        :style="{
+          top: '-25%',
+          right: '-70%',
+          opacity: 1,
         }"
-        >
-
-        <h2 class="text-2xl font-bold text-gray-800 transition duration-700 ease-in-out">{{ pizzas[activeIndex].name }}</h2>
-        <p class="text-gray-600 transition-all duration-700 ease-in-out">{{ pizzas[activeIndex].description }}</p>
+      >
+        <h2 class="text-2xl font-bold text-gray-800 transition duration-700 ease-in-out">
+          {{ pizzas[activeIndex].name }}
+        </h2>
+        <p class="text-gray-600 transition-all duration-700 ease-in-out">
+          {{ pizzas[activeIndex].description }}
+        </p>
       </div>
     </div>
   </template>
-  
   
   <script>
   export default {
@@ -36,16 +39,16 @@
     data() {
       return {
         pizzas: [
+          { image: "https://i.postimg.cc/3rZx3Dks/04-1.webp", name: "Margherita", description: "Classic margherita with fresh tomatoes and basil." },
           { image: "https://i.postimg.cc/fR8dyrJh/01-2.webp", name: "Veggie", description: "Loaded with veggies." },
           { image: "https://i.postimg.cc/L88qc3vQ/02-1.webp", name: "Pepperoni", description: "Topped with pepperoni slices and cheese." },
-          { image: "https://i.postimg.cc/3rZx3Dks/04-1.webp", name: "Margherita", description: "Classic margherita with fresh tomatoes and basil." },
           { image: "https://i.postimg.cc/9fPvyyHV/03-1.webp", name: "BBQ Chicken", description: "Barbecue chicken with tangy sauce." },
           { image: "https://i.postimg.cc/fR8dyrJh/01-2.webp", name: "Tandoori Paneer", description: "Indian paneer with spices." },
           { image: "https://i.postimg.cc/L88qc3vQ/02-1.webp", name: "Cheese Burst", description: "A cheesy delight with every bite." },
           { image: "https://i.postimg.cc/3rZx3Dks/04-1.webp", name: "Spicy Italian", description: "Hot and spicy Italian flavors." },
         ],
         pizzaPositions: [], // Stores the positions of pizzas dynamically
-        activeIndex: null, // Currently clicked pizza
+        activeIndex: 0, // Currently clicked pizza
       };
     },
     created() {
@@ -104,71 +107,55 @@
   </script>
   
   <style scoped>
-.carousel-container { 
-    transform: rotate(-7deg)
-}
-
- /* width: 100%; 
-  height: 500px;
-  position: relative;
-
-  @media (max-width: 768px) {
-    transform: rotate(-10deg); 
+  .carousel-container {
+    transform: rotate(-7deg);
   }
-
-  @media (max-width: 480px) {
-    width: 100%;
-    transform: rotate(0deg);
+  
+  .pizza-item {
+    width: 100px; /* Adjust size for smaller screens */
+    height: 100px;
+    transition: all 0.5s ease-in-out;
+  
+    @media (max-width: 768px) {
+      width: 80px;
+      height: 80px;
+    }
+  
+    @media (max-width: 480px) {
+      width: 60px;
+      height: 60px;
+    }
   }
-} */
-
-.pizza-item {
-  width: 100px; /* Adjust size for smaller screens */
-  height: 100px;
-  transition: all 0.5s ease-in-out;
-
-  @media (max-width: 768px) {
-    width: 80px;
-    height: 80px;
+  
+  .pizza-details {
+    opacity: 0; /* Start invisible */
+    position: absolute;
+    transform: translateY(20px); /* Animate from slightly below */
+    transition: opacity 0.5s ease, transform 0.5s ease;
   }
-
-  @media (max-width: 480px) {
-    width: 60px;
-    height: 60px;
+  
+  .pizza-details h2 {
+    font-family: "Playfair Display", serif; /* Elegant font for the name */
+    color: #2c3e50;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    padding: 1;
+    margin-right: 43rem;
+    line-height: 40pt;
   }
-}
-
-.pizza-details {
-  opacity: 0; /* Start invisible */
-  position: absolute;
-  transform: translateY(20px); /* Animate from slightly below */
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.pizza-details h2 {
-  font-family: 'Playfair Display', serif; /* Elegant font for the name */
-  color: #2c3e50;
-  font-size: 3rem;
-  margin-bottom: 2rem;
-  padding: 1;
-  margin-right: 43rem;
-  line-height: 40pt;
-
-}
-
-.pizza-details p {
-  font-family: 'Roboto', sans-serif; /* Modern font for description */
-  font-style: italic;
-  color: #34495e;
-
-  font-size: 1.5rem;
-  margin-bottom: 0rem;
-}
-
-.pizza-details.v-visible {
-  opacity: 1; /* Make visible */
-  transform: translateY(0); /* Move to final position */
-}
-
+  
+  .pizza-details p {
+    font-family: "Roboto", sans-serif; /* Modern font for description */
+    font-style: italic;
+    color: #34495e;
+  
+    font-size: 1.5rem;
+    margin-bottom: 0rem;
+  }
+  
+  .pizza-details.v-visible {
+    opacity: 1; /* Make visible */
+    transform: translateY(0); /* Move to final position */
+  }
   </style>
   
