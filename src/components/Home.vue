@@ -24,16 +24,23 @@
         Order Now
       </button>
     </div>
+
+    <!-- Promo Card Section -->
+    <div class="promo-card-wrapper mt-6">
+      <PromoCard />
+    </div>
   </section>
 </template>
 
 <script>
 import PizzaCarousel from "./PizzaCarousel.vue";
+import PromoCard from "./PromoCard.vue";
 
 export default {
   name: "Home",
   components: {
     PizzaCarousel,
+    PromoCard,
   },
 };
 </script>
@@ -64,17 +71,22 @@ export default {
   margin-left: auto; /* Push carousel content to the right */
 }
 
-button{
+button {
   font-weight: bold;
-
 }
 
-h2{
+h2 {
   font-family: 'Poppins', sans-serif;
   font-style: italic;
-  color:rgb(246, 202, 69);
+  color: rgb(246, 202, 69);
 }
 
+.promo-card-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 120%;
+  margin-left: -370px;
+}
 </style>
 
 <style scoped>
