@@ -3,8 +3,9 @@
   <!-- Banner Section -->
   <section
     class="bg-cover bg-center w-full items-center justify-center"
-    style="background-image: url('https://torontolife.mblycdn.com/uploads/tl/2024/11/toronto-restaurants-occhiolino-italian-spread.jpg')"
+    style="background-image: url('https://i.postimg.cc/KzJtLjTG/toronto-restaurants-occhiolino-italian-spread-1-1.jpg')"
   >
+  <!-- "https://torontolife.mblycdn.com/uploads/tl/2024/11/toronto-restaurants-occhiolino-italian-spread.jpg" -->
     <h2 class="lg:text-4xl md:text-2xl sm:text-xl text-white font-bold">Savor Every Bite🍴</h2>
   </section>
 
@@ -19,19 +20,19 @@
       <h2 class="how-it-works-title">How it Works</h2>
       <div class="steps-container">
         <div class="step">
-          <img src="https://i.postimg.cc/GtPsybNL/restaurant.png" alt="Pick Your Meals" class="step-icon" />
+          <img src="https://i.postimg.cc/4N6tBmkQ/restaurant-1.webp" alt="Pick Your Meals" class="step-icon" />
           <p class="step-number">01</p>
           <h3 class="step-title">Pick Your Meals</h3>
           <p class="step-description">A new menu of 30+ options every week</p>
         </div>
         <div class="step">
-          <img src="https://i.postimg.cc/0j1wjzVX/cooking.png" alt="Cooked Fresh by Chefs" class="step-icon" />
+          <img src="https://i.postimg.cc/c18ftFFj/cooking-1.webp" alt="Cooked Fresh by Chefs" class="step-icon" />
           <p class="step-number">02</p>
           <h3 class="step-title">Cooked Fresh by Chefs</h3>
           <p class="step-description">Our gourmet chefs do the prep, so you can do you.</p>
         </div>
         <div class="step">
-          <img src="https://i.postimg.cc/3RvG3XFD/tray.png" alt="Heat, Eat & Enjoy" class="step-icon" />
+          <img src="https://i.postimg.cc/7YWXr5Q8/tray-1.webp" alt="Heat, Eat & Enjoy" class="step-icon" />
           <p class="step-number">03</p>
           <h3 class="step-title">Heat, Eat & Enjoy</h3>
           <p class="step-description">No prep. No mess. Our meals arrive ready to heat and eat in minutes.</p>

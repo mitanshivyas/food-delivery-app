@@ -13,7 +13,7 @@
     name: "PromoCard",
     data() {
       return {
-        burgerImageUrl: "https://pngimg.com/uploads/pizza/pizza_PNG43978.png",
+        burgerImageUrl: "https://i.postimg.cc/28YJHcXb/pizza-PNG43978.webp",
       };
     },
   };

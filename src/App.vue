@@ -22,7 +22,6 @@
       :cartItems="cartItems" 
       :total="total" 
       @clear-cart="clearCart" 
-      @clear-cartb="clearCartb" 
       @checkout="handleCheckout"
       @add-to-cart="handleAddToCart"
       @increase-quantity="handleIncreaseQuantity" 
@@ -34,7 +33,6 @@
 
 <script>
 import AppHeader from "./components/Header.vue";
-import AppBanner from "./components/Banner.vue";
 import AppFooter from "./components/Footer.vue";
 import AppCart from "./components/Cart.vue";
 
@@ -42,7 +40,6 @@ export default {
   name: "App",
   components: {
     AppHeader,
-    AppBanner,
     AppCart,
     AppFooter,
   },
@@ -71,9 +68,6 @@ export default {
       }
     },
     clearCart() {
-      this.cartItems = [];
-    },
-    clearCartb() {
       this.cartItems = [];
     },
     handleIncreaseQuantity(item) {

@@ -137,8 +137,8 @@ export default {
       searchQuery: "",
       isLoading: false,
       categoryIcons: {
-        pizzas: "https://cdn-icons-png.flaticon.com/512/3132/3132693.png",
-        desserts: "https://i.postimg.cc/8c0Tdzp4/dessert.png",
+        pizzas: "https://i.postimg.cc/zDjXfdvC/pizzasmallicon.webp",
+        desserts: "https://i.postimg.cc/fyBwgbp2/dessertsmallicon.webp",
       },
     };
   },

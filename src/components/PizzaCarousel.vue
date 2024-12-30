@@ -6,9 +6,9 @@
           <div
             v-for="(pizza, index) in pizzas"
             :key="index"
-            class="pizza-item absolute bg-cover cursor-pointer transition duration-100 rounded-full"
+            class="pizza-item absolute bg-cover cursor-pointer transition duration-50 rounded-full"
             :class="{ 'hover:shadow-lg hover:bg-pink-300': activeIndex !== index }"
-            :style="getPizzaStyle(index)"
+            :style="{ ...getPizzaStyle(index), transition: 'all 0.5s ease-in-out' }"
             @click="setActiveIndex(index)"
           ></div>
         </div>
