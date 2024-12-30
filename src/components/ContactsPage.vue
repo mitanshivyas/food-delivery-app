@@ -1,16 +1,16 @@
 <template>
     <section class="min-h-screen flex flex-col items-center">
       <!-- Banner Section -->
-      <section
+      <!-- <section
         class="bg-cover bg-center h-64 flex items-center justify-center w-full"
         style="background-image: url('https://static.vecteezy.com/system/resources/previews/037/245/808/non_2x/ai-generated-beautuful-fast-food-background-with-copy-space-free-photo.jpg');"
       >
         <h2 class="text-3xl text-white font-bold">Contact Us</h2>
-      </section>
+      </section> -->
   
       <!-- Contact Information -->
       <section class="container mx-auto py-8">
-        <h3 class="text-2xl font-bold mb-4 text-center">We're Here to Help!</h3>
+        <h3 class="text-2xl font-bold mb-4 text-center mt-20" >We're Here to Help!</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="space-y-4">
             <p><strong>Phone:</strong> +1 800-FOOD-123</p>

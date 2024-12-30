@@ -10,11 +10,25 @@
       <!-- Navigation -->
       <nav :class="['md:flex', menuOpen ? 'block' : 'hidden']" class="space-x-4 items-center">
       <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
-        <li><button @click="$emit('navigate', 'home')" class="hover:text-gray-400">Home</button></li>
+        <!-- <li><button @click="$emit('navigate', 'home')" class="hover:text-gray-400">Home</button></li>
         <li><button @click="$emit('navigate', 'menu')" class="hover:text-gray-400">Menu</button></li>
         <li><button @click="$emit('navigate', 'contact')" class="hover:text-gray-400">Contact</button></li>
         <li class="relative">
           <button @click="$emit('navigate', 'cart')" class="relative">
+            <font-awesome-icon icon="shopping-cart" class="text-xl" />
+            <span
+              v-if="cartCount > 0"
+              class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center"
+            >
+              {{ cartCount }}
+            </span>
+          </button>
+        </li> -->
+        <li><button @click="navigateTo('/')" class="hover:text-gray-400">Home</button></li>
+        <li><button @click="navigateTo('/menu')" class="hover:text-gray-400">Menu</button></li>
+        <li><button @click="navigateTo('/contact')" class="hover:text-gray-400">Contact</button></li>
+        <li class="relative">
+          <button @click="navigateTo('/cart')" class="relative">
             <font-awesome-icon icon="shopping-cart" class="text-xl" />
             <span
               v-if="cartCount > 0"
@@ -56,6 +70,9 @@ export default {
     };
   },
   methods: {
+    navigateTo(route) {
+      this.$router.push(route); // Programmatically navigate to the route
+    },
     toggleMenu() {
       this.menuOpen = !this.menuOpen;
       console.log("Menu Open State:", this.menuOpen); // Debug menu state

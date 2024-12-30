@@ -56,9 +56,16 @@
       <!-- Buttons Section -->
       <div class="pt-4 border-t border-gray-700 p-4">
         <p class="text-lg font-bold mb-4">Total: ${{ total }}</p>
-        <button
+        <!-- <button
           v-if="cartItems.length"
           @click="$emit('checkout')"
+          class="bg-yellow-400 text-white px-4 py-2 rounded w-full shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+        >
+          Checkout
+        </button> -->
+        <button
+          v-if="cartItems.length"
+          @click="goToCheckout"
           class="bg-yellow-400 text-white px-4 py-2 rounded w-full shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
         >
           Checkout
@@ -118,6 +125,9 @@ export default {
     };
   },
   methods: {
+    goToCheckout(){
+      this.$router.push('/cart') // Programmatically navigate to Checkout page
+    },
     toggleCollapse() {
       this.collapsed = !this.collapsed;
     },

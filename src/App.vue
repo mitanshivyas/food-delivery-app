@@ -1,52 +1,53 @@
 <template>
   <div id="app">
+
+    <!-- Render the routed components here -->
+    
     <AppHeader :cartCount="cartQuantity" @navigate="currentPage = $event" />
-    <!-- <AppBanner /> -->
-    <main class="pt-[64px] w-full px-4 overflow-visible">
-      <!-- Add top padding equal to the header height -->
-      <AppHome v-if="currentPage === 'home'" @navigate="currentPage = $event"/>
-      <AppMenu v-if="currentPage === 'menu'" @add-to-cart="handleAddToCart" />    
-      <ContactsPage v-if="currentPage === 'contact'" />
-      <CartPage
-        v-if="currentPage === 'cart'"
-        :cartItems="cartItems"
-        :total="total"
-        @clear-cart="clearCart"
-        @clear-cartb = "clearCartb"
-        @checkout="handleCheckout"
-        @increase-quantity="handleIncreaseQuantity" @decrease-quantity="handleDecreaseQuantity"
-      />
-    </main>
-    <AppCart v-if = "currentPage != 'cart'" :cartItems="cartItems" :total="total" @increase-quantity="handleIncreaseQuantity" @decrease-quantity="handleDecreaseQuantity" @checkout="handleCheckout" @clear-cart="clearCart"/>
+
+    <!-- Conditional Cart Display -->
+    <AppCart
+      v-if="$route.name === 'AppMenu' || $route.name === 'Contact'"
+      :cartItems="cartItems"
+      :total="total"
+      @increase-quantity="handleIncreaseQuantity"
+      @decrease-quantity="handleDecreaseQuantity"
+      @checkout="handleCheckout"
+      @clear-cart="clearCart"
+    />
+    <div class="content-container">
+      <AppBanner v-if="$route.name === 'Home'" />
+
+      <router-view 
+      :cartItems="cartItems" 
+      :total="total" 
+      @clear-cart="clearCart" 
+      @clear-cartb="clearCartb" 
+      @checkout="handleCheckout"
+      @add-to-cart="handleAddToCart"
+      @increase-quantity="handleIncreaseQuantity" 
+      @decrease-quantity="handleDecreaseQuantity"> </router-view>
+    </div>
     <AppFooter />
   </div>
 </template>
 
 <script>
 import AppHeader from "./components/Header.vue";
-import AppHome from "./components/Home.vue";
 import AppBanner from "./components/Banner.vue";
-import AppMenu from "./components/Menu.vue";
-import AppCart from "./components/Cart.vue";
-import CartPage from "./components/CartPage.vue";
 import AppFooter from "./components/Footer.vue";
-import ContactsPage from "./components/ContactsPage.vue";
+import AppCart from "./components/Cart.vue";
 
 export default {
   name: "App",
   components: {
     AppHeader,
     AppBanner,
-    AppHome,
-    AppMenu,
-    CartPage,
     AppCart,
     AppFooter,
-    ContactsPage
   },
   data() {
     return {
-      currentPage: "home",
       cartItems: [],
     };
   },

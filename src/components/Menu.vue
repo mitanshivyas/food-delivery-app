@@ -1,14 +1,14 @@
 <template>
   <section class="min-h-screen flex flex-col">
     <!-- Banner Section -->
-    <section
+    <!-- <section
       class="bg-cover bg-center h-64 flex items-center justify-center mt-0"
       style="background-image: url('https://static.vecteezy.com/system/resources/previews/037/245/808/non_2x/ai-generated-beautuful-fast-food-background-with-copy-space-free-photo.jpg')"
     >
       <h2 class="text-3xl text-white font-bold">Our Menu</h2>
-    </section>
-
-    <section class="container mx-auto py-4">
+    </section> -->
+    <!--Search Bar-->
+    <!-- <section class="container mx-auto py-4">
       <div class="w-full border border-gray-300 rounded p-2 shadow-md hover:shadow-lg transition duration-50 ease-in-out transform hover:scale-110">
         <input
           v-model="searchQuery"
@@ -17,6 +17,43 @@
           class="w-full focus:outline-none"
           @input="searchItems"
         />
+      </div>
+    </section> -->
+    <section class="container mx-auto py-4 mt-20">
+      <div class="w-full max-w-sm min-w-[200px]">
+        <div
+          class="relative flex items-center bg-gray-100 border border-gray-300 rounded-full shadow-md hover:shadow-lg transition duration-200 ease-in-out transform hover:scale-105"
+        >
+          
+
+          <!-- Input Field -->
+          <input
+            v-model="searchQuery"
+            type="text"
+            placeholder="Search for items..."
+            class="w-full bg-transparent placeholder:text-gray-500 text-gray-700 text-sm border-none rounded-full pr-3 pl-7 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            @input="searchItems"
+          />
+
+          <!-- Search Button -->
+          <button
+            class="rounded-full ml-2 bg-gray-800 p-2.5 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-gray-700 focus:shadow-none active:bg-gray-700 hover:bg-gray-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            type="button"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="w-4 h-4"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
     </section>
 
@@ -29,16 +66,15 @@
           @click="fetchMenu(category)"
           class="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300 flex items-center justify-center mr-2 shadow-md hover:shadow-lg transition duration-50 ease-in-out transform hover:scale-110"
         >
-          <img
-            :src="categoryIcons[category]"
-            :alt="category"
-            class="w-8 h-8"
-          />
+          <img :src="categoryIcons[category]" :alt="category" class="w-8 h-8" />
         </button>
       </div>
 
       <!-- Menu Items Section -->
-      <div v-if="menuItems.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div
+        v-if="menuItems.length > 0"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
         <div
           v-for="item in menuItems"
           :key="item.id"
@@ -81,8 +117,8 @@ export default {
       searchQuery: "",
       isLoading: false,
       categoryIcons: {
-      pizzas: "https://cdn-icons-png.flaticon.com/512/3132/3132693.png",
-      desserts: "https://i.postimg.cc/8c0Tdzp4/dessert.png",
+        pizzas: "https://cdn-icons-png.flaticon.com/512/3132/3132693.png",
+        desserts: "https://i.postimg.cc/8c0Tdzp4/dessert.png",
       },
     };
   },
@@ -91,13 +127,17 @@ export default {
       // Fetch a single category's menu items
       this.isLoading = true;
       try {
-        const response = await fetch(`https://pizza-and-desserts.p.rapidapi.com/${category}`, {
-          method: "GET",
-          headers: {
-            "x-rapidapi-key": "1bf1ce62e0msh1196b9fd7ccd351p147dc3jsn940fa904a174",
-            "x-rapidapi-host": "pizza-and-desserts.p.rapidapi.com",
-          },
-        });
+        const response = await fetch(
+          `https://pizza-and-desserts.p.rapidapi.com/${category}`,
+          {
+            method: "GET",
+            headers: {
+              "x-rapidapi-key":
+                "1bf1ce62e0msh1196b9fd7ccd351p147dc3jsn940fa904a174",
+              "x-rapidapi-host": "pizza-and-desserts.p.rapidapi.com",
+            },
+          }
+        );
         const data = await response.json();
         console.log(`Fetched data for ${category}:`, data);
         this.menuItems = data; // Show only the selected category's items
@@ -115,13 +155,17 @@ export default {
       try {
         const allItems = [];
         for (const category of this.categories) {
-          const response = await fetch(`https://pizza-and-desserts.p.rapidapi.com/${category}`, {
-            method: "GET",
-            headers: {
-              "x-rapidapi-key": "1bf1ce62e0msh1196b9fd7ccd351p147dc3jsn940fa904a174",
-              "x-rapidapi-host": "pizza-and-desserts.p.rapidapi.com",
-            },
-          });
+          const response = await fetch(
+            `https://pizza-and-desserts.p.rapidapi.com/${category}`,
+            {
+              method: "GET",
+              headers: {
+                "x-rapidapi-key":
+                  "1bf1ce62e0msh1196b9fd7ccd351p147dc3jsn940fa904a174",
+                "x-rapidapi-host": "pizza-and-desserts.p.rapidapi.com",
+              },
+            }
+          );
           const data = await response.json();
           allItems.push(...data);
           console.log(`Fetched data for ${category}:`, data);
@@ -148,9 +192,10 @@ export default {
     },
     searchItems() {
       const query = this.searchQuery.toLowerCase();
-      this.menuItems = this.allItems.filter(item =>
-        item.name.toLowerCase().includes(query) ||
-        (item.description && item.description.toLowerCase().includes(query))
+      this.menuItems = this.allItems.filter(
+        (item) =>
+          item.name.toLowerCase().includes(query) ||
+          (item.description && item.description.toLowerCase().includes(query))
       );
     },
   },
