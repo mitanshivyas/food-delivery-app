@@ -8,33 +8,29 @@
     <h2 class="lg:text-4xl md:text-2xl sm:text-xl text-white font-bold">Savor Every Bite🍴</h2>
   </section>
 
-  <section class="min-h-screen flex justify-between content-start">
-    <!-- Call to Action Card -->
-    <div class="order-now-section flex-auto p-10 rounded-lg shadow-lg text-center">
+  <section class="min-h-screen">
+    <!-- Promo Card Section -->
+    <div class="promo-card-wrapper ">
+      <PromoCard />
+    </div>
+    
+
+    <!-- Pizza Carousel Section -->
+    <div class="hidden sm:block md:hidden lg:block carousel-right">
+      <!--   -->
+      <PizzaCarousel />
+    </div>
+  </section>
+  <!-- Call to Action Card -->
+  <div class="order-now-section p-10 rounded-lg shadow-lg text-center">
       <h3 class="Hungry text-3xl font-poppins font-bold mb-4">Hungry?</h3>
       <p class="tag text-lg font-poppins mb-6">Order your favorite meals now!</p>
-      <!--<button
-        @click="$emit('navigate', 'menu')"
-        class="bg-pink-500 text-white px-6 py-3 rounded hover:shadow-lg transition duration-50 ease-in-out transform hover:scale-110 hover:bg-pink-600"
-      >
-        Order Now
-      </button> -->
       <button
         @click=" navigateTo('/menu')"
         class="bg-pink-500 text-white px-6 py-3 rounded hover:shadow-lg transition duration-50 ease-in-out transform hover:scale-110 hover:bg-pink-600"
       >
         Order Now
       </button> 
-    </div>
-
-    <!-- Pizza Carousel Section -->
-    <div class="flex-auto hidden sm:flex md:hidden lg:flex carousel-right">
-      <PizzaCarousel />
-    </div>
-</section>
-    <!-- Promo Card Section -->
-    <div class="promo-card-wrapper ">
-      <PromoCard />
     </div>
   
 </template>
@@ -57,41 +53,74 @@ export default {
 };
 </script>
 
-<style>
-.min-h-screen{
-  background: linear-gradient(90deg, hsl(229, 69%, 87%), white, #f4ccec);
+
+<style scoped>
+.min-h-screen {
+  display: flex;
+  flex-direction: row; /* Align call-to-action and carousel horizontally */
+  justify-content: space-between; /* Space between the two items */
+  align-items: flex-start; /* Align items at the top of the section */
+  padding: 2rem; /* Add space below the banner */
+  width: 100%; /* Ensure full width */
+  margin-top: 0; /* Remove any default margins */
 }
+
+.order-now-section {
+  flex: 1; /* Allow the card to occupy equal space */
+  max-width: 400px; /* Set a max width for the card */
+  background-color: #ffddf0; /* Light pink background */
+  padding: 2rem; /* Add padding inside the card */
+  margin-left: 0; /* Align the card to the extreme left */
+  margin-top: 28rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  border-radius: 0.5rem; /* Rounded corners */
+  position: relative;
+  z-index: 1; /* Ensure it appears above other elements */
+}
+
+
+/* .carousel-right {
+  flex: 1; 
+  display: flex;
+  justify-content: flex-end; 
+  align-items: flex-start; 
+  margin-top: 2rem; 
+  position: relative; 
+} */
+
+.carousel-right {
+  position: absolute; /* Position explicitly */
+  top: 170%; /* Push it down */
+  right: 450px; /* Move it to the extreme right */
+  transform: translateY(-50%); /* Center it vertically relative to its parent */
+  width: auto; /* Ensure it doesn’t exceed the container width */
+}
+
+.bg-cover {
+  width: 100%; /* Ensure the banner covers full width */
+  height: 50vh; /* Set fixed height */
+  background-size: cover;
+  background-position: center;
+}
+
+body, #app {
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+</style>
+
+<style>
 
 .order{
   background-color: #f87193;
 }
-.order-now-section{
-  background-color: #ffddf0;
-}
+
 .tag{
   color: #393b45;
 }
 .Hungry {
   color: #2a2d4a;
 }
-.home-section {
-  display: flex;
-  width: 100%;
-  height: 100vh;
-  align-items: center;
-  justify-content: space-between; /* Ensure items are separated */
-}
-
-.carousel-right {
-  flex-shrink: 0; /* Prevent shrinking */
-  width: 40%; /* Explicit width for the carousel */
-  display: flex;
-  justify-content: flex-end; /* Align the carousel to the extreme right */
-}
-
-/* .carousel-right > * {
-  margin-left: auto; 
-} */
 
 button {
   font-weight: bold;
@@ -104,20 +133,10 @@ h2 {
 }
 
 .promo-card-wrapper {
-  display: flex;
+  position: relative;
   justify-content: center;
   width: 120%;
-  margin-left: 0px;
+  margin-left: -650px;
 }
 </style>
 
-<style scoped>
-.order-now-section {
-  max-width: 350px; 
-  justify-content: flex-start;
-  position: absolute; /* Place it at the top-left corner */
-  top: 400px; /* Distance from the top */
-  left: 0px; /* Distance from the left */
-  z-index: 10; /* Ensure it appears above other content */
-}
-</style>

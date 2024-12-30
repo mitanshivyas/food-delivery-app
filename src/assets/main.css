@@ -86,14 +86,3 @@ main {
     height: 50vh;
   }
 }
-
-/* Pizza carousel scaling */
-.carousel-wrapper {
-  display: none; /* Hide by default */
-}
-
-@media (min-width: 1024px) {
-  .carousel-wrapper {
-    display: flex; /* Show only on large screens */
-  }
-}

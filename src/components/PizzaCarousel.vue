@@ -15,10 +15,10 @@
       </div>
       <!-- Pizza Details -->
       <div v-if="activeIndex !== null" 
-        class="pizza-details absolute text-bottom"
+        class="pizza-details  text-top"
         :style="{ 
-            bottom: '40%', 
-            left: '10%', 
+            top: '-25%', 
+            right: '-70%', 
             opacity: 1 
         }"
         >
@@ -84,7 +84,7 @@
         }
   
         // Style for other pizzas
-        const radius = 370; // Radius of the semicircle
+        const radius = 320; // Radius of the semicircle
         const angle = angleStep * currentIndex - rotationOffset;
         const y = Math.cos((angle * Math.PI) / 180) * radius;
         const x = Math.sin((angle * Math.PI) / 180) * radius;
@@ -105,7 +105,7 @@
   
   <style scoped>
 .carousel-container { 
-    transform: rotate(-10deg)
+    transform: rotate(-7deg)
 }
 
  /* width: 100%; 
@@ -149,15 +149,20 @@
   font-family: 'Playfair Display', serif; /* Elegant font for the name */
   color: #2c3e50;
   font-size: 3rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  padding: 1;
+  margin-right: 43rem;
+  line-height: 40pt;
+
 }
 
 .pizza-details p {
   font-family: 'Roboto', sans-serif; /* Modern font for description */
   font-style: italic;
   color: #34495e;
+
   font-size: 1.5rem;
-  margin-top: 1;
+  margin-bottom: 0rem;
 }
 
 .pizza-details.v-visible {
