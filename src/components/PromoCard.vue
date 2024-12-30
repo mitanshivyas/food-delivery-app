@@ -25,7 +25,7 @@
   }
   .promo-card {
     position: relative;
-    background-color: #e1d5f9;
+    background-color: #aa96f2;
     border-radius: 15px;
     padding: 1.5rem;
     width: 300px;
@@ -41,7 +41,7 @@
   .promo-title {
     font-size: 1.8rem;
     font-weight: bold;
-    color: #563d7c;
+    color: white;
     margin-bottom: 0.5rem;
   }
   

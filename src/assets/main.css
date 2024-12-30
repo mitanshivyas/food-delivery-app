@@ -8,11 +8,8 @@
 
 html {
   @apply scrollbar scrollbar-thumb-pink-300 scrollbar-track-yellow-100;
-  background: linear-gradient(
-    135deg,
-    #ffd1dc,
-    #fff4e6
-  ); /* Pastel pink and yellow gradient */
+  background: linear-gradient(90deg, hsl(229, 69%, 87%), white, #f4ccec);
+  scrollbar-color: #f87193 #f4ccec;
 }
 
 header {
@@ -29,10 +26,10 @@ html,
 body {
   height: 100%; /* Ensure the body takes full height of the viewport */
   margin: 0; /* Remove default margin */
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  color: #4a4a4a;
-  background: #ffe6f0;
+  color: #4a4a4a; */
+  background: linear-gradient(90deg, hsl(229, 69%, 87%), white, #f4ccec);
 }
 
 #app {
@@ -42,17 +39,17 @@ body {
 }
 
 header {
-  background-color: #ffcc00; /* Yellow header */
+  background-color: #ab97f3; /* Yellow header */
   color: #4a4a4a; /* Text color for the header */
-  padding: 1rem;
+  padding: 0;
   z-index: 1000; /* Ensure it stays above all content */
   border-bottom: 0px solid #ff69b4; /* Slightly darker pastel pink */
 }
 
 nav button {
-  color: white; /* White text for navigation buttons */
+  color: #2a2d4a; /* White text for navigation buttons */
   font-weight: bold;
-  background-color: #ff69b4; /* Pastel pink highlight */
+  background-color: #ffddf0; /* Pastel pink highlight */
   padding: 0.5rem 1rem;
   border-radius: 8px;
   transition: background-color 0.3s ease;
@@ -77,19 +74,16 @@ section {
   align-items: center;
 }
 
-/* Ensuring the banner scales properly */
 .bg-cover {
-  background-size: cover;
+  width: 101%;
   background-position: center;
-  height: 50vh; /* Default height */
-  width: 100%;
+  height: full; /* Default height */
 
   @media (max-width: 768px) {
-    height: 15vh; /* Smaller height for medium and small screens */
+    height: 50vh;
   }
-
   @media (min-width: 1024px) {
-    height: 30vh; /* Larger height for desktops */
+    height: 50vh;
   }
 }
 

@@ -7,7 +7,7 @@
         <!-- Clickable ChowTown text -->
         <h1 class="text-xl font-bold hover:text-gray-400">Mitanshi's Mania</h1>
         <!-- Add food icon -->
-        <font-awesome-icon :icon="['fas', 'utensils']" class="text-pink-500 text-2xl" />
+        <font-awesome-icon :icon="['fas', 'utensils']" class="fork text-2xl" />
       </button>
       
       <!-- Burger Menu -->
@@ -78,17 +78,23 @@ export default {
 
 /* Ensure burger menu button is visible only on small screens */
 .burger-button {
-  display: none; /* Hidden by default */
+  display: none;
+ /* Hidden by default */
 }
 
 @media (max-width: 768px) {
   .burger-button {
-    display: block; /* Visible on smaller screens */
+    display: block;
+    background: transparent; /* Visible on smaller screens */
   }
 
   nav.md\\:flex {
     display: none; /* Hide the nav flex on smaller screens */
   }
+}
+
+.fork{
+  color: #f87193;
 }
 
 nav ul {
@@ -98,7 +104,7 @@ nav ul {
 nav.block ul {
   display: flex; /* Show menu items when menuOpen is true */
   flex-direction: column;
-  background-color: #1a202c; /* Match the header background */
+  background: transparent; /* Match the header background */
   width: 100%; /* Ensure it spans the full width */
   padding: 1rem 0;
 }
@@ -122,9 +128,9 @@ nav ul li {
 h1 {
   font-family: 'Playfair Display', serif;
   font-size: 2.5rem;
-  margin-left: -150px;
-  color: #FF77A9;
-  font-style: bold;
+  margin-left: 0px;
+  color: #2c2f4b;
+  font-style: italic;
 }
 
 </style>
