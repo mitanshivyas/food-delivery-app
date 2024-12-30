@@ -1,6 +1,6 @@
 <template>
-  <footer class="bg-gray-800 text-white p-4">
-    <p>&copy; 2024 Food Delivery. All rights reserved.</p>
+  <footer>
+    <p>© 2024 Food Delivery App. All rights reserved.</p>
   </footer>
 </template>
 
@@ -9,3 +9,12 @@ export default {
   name: "AppFooter",
 };
 </script>
+
+<style scoped>
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 20px;
+}
+</style>

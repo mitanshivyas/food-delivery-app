@@ -117,11 +117,25 @@ export default {
 <style>
 body {
   margin: 0;
-  font-family: "Arial", sans-serif;
+  font-family: Arial, sans-serif;
 }
 
-/* .container {
-  max-width: 1200px;
-  margin: 0 auto;
-} */
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the app takes up the full viewport height */
+}
+
+.content-container {
+  flex: 1; /* Push the footer to the bottom when content is short */
+  padding: 20px;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 20px;
+  margin-top: auto; /* Allow footer to move to the end of content when scrolling */
+}
 </style>
