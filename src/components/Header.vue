@@ -6,12 +6,7 @@
       <!-- Logo Section -->
       <button @click="navigateTo('/')" class="flex items-center space-x-2">
         <!-- Brand Name -->
-        <h1 class="text-xl font-bold hover:text-yellow-400">Mitanshi's Mania</h1>
-        <!-- Food Icon -->
-        <font-awesome-icon
-          :icon="['fas', 'utensils']"
-          class="text-pink-500 text-2xl"
-        />
+        <h1 class="text-xl font-bold hover:text-yellow-400">Mits Pizzeria</h1>
       </button>
 
       <!-- Burger Menu Button (Visible on Mobile) -->
@@ -41,7 +36,7 @@
           <li>
             <button
               @click="navigateTo('/')"
-              class="hover:text-gray-400 px-4 py-2"
+              class="hover:text-gray-400 px-4 py-2 bg-transparent"
             >
               Home
             </button>
@@ -50,7 +45,7 @@
           <li>
             <button
               @click="navigateTo('/menu')"
-              class="hover:text-gray-400 px-4 py-2"
+              class="hover:text-gray-400 px-4 py-2 bg-transparent"
             >
               Menu
             </button>
@@ -59,7 +54,7 @@
           <li>
             <button
               @click="navigateTo('/contact')"
-              class="hover:text-gray-400 px-4 py-2"
+              class="hover:text-gray-400 px-4 py-2 bg-transparent"
             >
               Contact
             </button>
@@ -68,7 +63,7 @@
           <li class="relative">
             <button
               @click="navigateTo('/cart')"
-              class="relative hover:text-gray-400 px-4 py-2"
+              class="relative hover:text-gray-400 px-4 py-2 bg-transparent"
             >
               <font-awesome-icon icon="shopping-cart" class="text-xl" />
               <!-- Badge -->
@@ -161,7 +156,7 @@ nav ul {
 nav.block ul {
   display: flex; /* Show menu items when menuOpen is true */
   flex-direction: column;
-  background-color: #1a202c; /* Match the header background */
+  background-color: #b4a4ed; /* Match the header background */
   width: 100%; /* Ensure it spans the full width */
   padding: 1rem 0;
 }

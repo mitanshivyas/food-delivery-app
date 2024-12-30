@@ -5,8 +5,6 @@
         <div
           class="relative flex items-center bg-gray-100 border border-gray-300 rounded-full shadow-md hover:shadow-lg transition duration-200 ease-in-out transform hover:scale-105"
         >
-          
-
           <!-- Input Field -->
           <input
             v-model="searchQuery"
@@ -40,17 +38,41 @@
 
     <!-- Categories Section -->
     <section class="container mx-auto py-8">
-      <div class="flex space-x-4 justify-center mb-8">
-        <button
-          v-for="category in categories"
-          :key="category"
-          @click="fetchMenu(category)"
-          class="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300 flex items-center justify-center mr-2 shadow-md hover:shadow-lg transition duration-50 ease-in-out transform hover:scale-110"
+      <div class="border-b border-gray-200 dark:border-gray-700">
+        <ul
+          class="flex flex-wrap -mb-px text-lg font-medium text-center text-gray-900 dark:text-gray-700 justify-center"
         >
-          <img :src="categoryIcons[category]" :alt="category" class="w-8 h-8" />
-        </button>
+          <li
+            v-for="category in categories"
+            :key="category"
+            @click="fetchMenu(category)"
+            class="me-4"
+          >
+            <a
+              href="#"
+              :class="[
+                'inline-flex items-center justify-center px-6 py-4 border-b-2 rounded-t-lg group',
+                activeCategory === category
+                  ? 'text-black border-black dark:text-gray-200 dark:border-gray-200'
+                  : 'border-transparent hover:text-black hover:border-black dark:hover:text-black',
+              ]"
+              aria-current="page"
+            >
+              <img
+                :src="categoryIcons[category]"
+                :alt="category"
+                class="w-6 h-6 me-3"
+                :class="[
+                  activeCategory === category
+                    ? 'text-black dark:text-gray-200'
+                    : 'text-gray-600 group-hover:text-black dark:text-gray-400 dark:group-hover:text-black',
+                ]"
+              />
+              {{ category }}
+            </a>
+          </li>
+        </ul>
       </div>
-
       <!-- Menu Items Section -->
       <div
         v-if="menuItems.length > 0"
@@ -59,22 +81,39 @@
         <div
           v-for="item in menuItems"
           :key="item.id"
-          class="bg-white p-4 shadow rounded"
+          class="relative flex flex-col my-1 bg-white shadow-sm border border-slate-200 rounded-lg w-96 mr-1 ml-1"
         >
-          <img
-            :src="item.img || item.image || 'https://via.placeholder.com/150'"
-            :alt="item.name"
-            class="w-full h-48 object-cover mb-4 rounded"
-          />
-          <h3 class="text-xl font-bold">{{ item.name }}</h3>
-          <p class="text-gray-600">{{ item.description }}</p>
-          <p class="font-bold">${{ item.price }}</p>
-          <button
-            class="bg-yellow-400 text-white px-4 py-2 rounded mt-2 mr-2 shadow-md hover:shadow-lg transition duration-50 ease-in-out transform hover:scale-110"
-            @click="addToCart(item)"
+          <div
+            class="relative p-2 h-96 overflow-hidden rounded-xl bg-clip-border"
           >
-            Add to Cart
-          </button>
+            <img
+              :src="item.img || item.image || 'https://via.placeholder.com/150'"
+              :alt="item.name"
+              class="h-full w-full object-cover rounded-md"
+            />
+          </div>
+          <div class="p-4 flex flex-col flex-grow">
+            <div class="mb-2 flex items-center justify-between">
+              <p class="text-slate-800 text-xl font-semibold">
+                {{ item.name }}
+              </p>
+              <p class="text-cyan-600 text-xl font-semibold">
+                ${{ item.price }}
+              </p>
+            </div>
+            <p class="text-slate-600 leading-normal font-light flex-grow">
+              {{ item.description }}
+            </p>
+            <div class="mt-auto">
+              <button
+                class="rounded-md w-full bg-[#f87193] py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-[#f87193] focus:shadow-none active:bg-[#f87193] hover:bg-[#f87193] active:hover:bg-[#f87193] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                type="button"
+                @click="addToCart(item)"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 

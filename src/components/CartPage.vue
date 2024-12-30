@@ -24,68 +24,72 @@
     <h2 class="text-2xl font-bold text-center mt-20 mb-6">Your Cart</h2>
     <div v-if="cartItems.length > 0">
       <div class="grid grid-cols-1 gap-6">
-  <div
-    v-for="item in cartItems"
-    :key="item.id"
-    class="max-w-sm w-full lg:max-w-full lg:flex mx-auto"
-  >
-    <!-- Left Section: Image -->
-    <div
-      class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-      :style="{ backgroundImage: `url(${item.img})` }"
-      :title="item.name"
-    >
-    </div>
+        <div
+          v-for="item in cartItems"
+          :key="item.id"
+          class="max-w-sm w-full lg:max-w-full lg:flex mx-auto"
+        >
+          <!-- Left Section: Image -->
+          <div
+            class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
+            :style="{ backgroundImage: `url(${item.img})` }"
+            :title="item.name"
+          ></div>
 
-    <!-- Right Section: Content -->
-    <div
-      class="max-w-sm w-full lg:max-w-full lg:flex border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal"
-    >
-      <div class="mb-8">
-        <div class="text-gray-900 font-bold text-xl mb-2">{{ item.name }}</div>
-        <p class="text-gray-700 text-base">{{ item.description }}</p>
-        <p class="font-bold">Price: ${{ item.price.toFixed(2) }}</p>
-      </div>
-      <div class="flex items-center justify-between">
-        <!-- Quantity Controls -->
-        <p class="text-sm text-gray-500">
-          Quantity:
-          <button
-            @click="$emit('decrease-quantity', item)"
-            class="bg-gray-300 text-black px-2 rounded"
+          <!-- Right Section: Content -->
+          <div
+            class="max-w-sm w-full lg:max-w-full lg:flex border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal"
           >
-            -
-          </button>
-          <span class="px-2">{{ item.quantity }}</span>
-          <button
-            @click="$emit('increase-quantity', item)"
-            class="bg-gray-300 text-black px-2 rounded"
-          >
-            +
-          </button>
-        </p>
-        <!-- Total Price -->
-        <p class="text-lg font-bold">${{ (item.price * item.quantity).toFixed(2) }}</p>
+            <div class="mb-8">
+              <div class="text-gray-900 font-bold text-xl mb-2">
+                {{ item.name }}
+              </div>
+              <p class="text-gray-700 text-base">{{ item.description }}</p>
+              <p class="font-bold">Price: ${{ item.price.toFixed(2) }}</p>
+            </div>
+            <div class="flex items-center justify-between">
+              <!-- Quantity Controls -->
+              <p class="text-sm text-gray-500">
+                Quantity:
+                <button
+                  @click="$emit('decrease-quantity', item)"
+                  class="bg-gray-300 text-black px-2 rounded"
+                >
+                  -
+                </button>
+                <span class="px-2">{{ item.quantity }}</span>
+                <button
+                  @click="$emit('increase-quantity', item)"
+                  class="bg-gray-300 text-black px-2 rounded"
+                >
+                  +
+                </button>
+              </p>
+              <!-- Total Price -->
+              <p class="text-lg font-bold">
+                ${{ (item.price * item.quantity).toFixed(2) }}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
-
 
       <div class="mt-8 text-right">
         <p class="text-xl font-bold">Total: ${{ total }}</p>
-        <button
-          class="bg-green-500 text-white px-6 py-3 rounded mt-4 hover:bg-green-600"
-          @click="handleCheckout"
-        >
-          Checkout
-        </button>
-        <button
-          class="bg-red-500 text-white px-6 py-3 rounded mt-4 hover:bg-red-600"
-          @click="handleClearCart"
-        >
-          Clear Cart
-        </button>
+        <div class="space-x-4 inline-block">
+          <button
+            class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+            @click="handleCheckout"
+          >
+            Checkout
+          </button>
+          <button
+            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+            @click="handleClearCart"
+          >
+            Clear Cart
+          </button>
+        </div>
       </div>
     </div>
     <div v-else class="text-center">
