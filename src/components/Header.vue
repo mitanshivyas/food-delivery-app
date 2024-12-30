@@ -1,6 +1,6 @@
 <template>
   <header
-    class="p-4 flex justify-between items-center fixed top-0 w-full z-50 bg-yellow-400 text-white"
+    class="p-4 flex justify-between items-center fixed top-0 w-full z-50  text-white"
   >
     <div class="container mx-auto flex justify-between items-center">
       <!-- Logo Section -->
@@ -41,7 +41,7 @@
           <li>
             <button
               @click="navigateTo('/')"
-              class="block text-white hover:text-gray-400 px-4 py-2"
+              class="hover:text-gray-400 px-4 py-2"
             >
               Home
             </button>
@@ -50,7 +50,7 @@
           <li>
             <button
               @click="navigateTo('/menu')"
-              class="block text-white hover:text-gray-400 px-4 py-2"
+              class="hover:text-gray-400 px-4 py-2"
             >
               Menu
             </button>
@@ -59,7 +59,7 @@
           <li>
             <button
               @click="navigateTo('/contact')"
-              class="block text-white hover:text-gray-400 px-4 py-2"
+              class="hover:text-gray-400 px-4 py-2"
             >
               Contact
             </button>
@@ -68,7 +68,7 @@
           <li class="relative">
             <button
               @click="navigateTo('/cart')"
-              class="relative block text-white hover:text-gray-400 px-4 py-2"
+              class="relative hover:text-gray-400 px-4 py-2"
             >
               <font-awesome-icon icon="shopping-cart" class="text-xl" />
               <!-- Badge -->
@@ -133,18 +133,24 @@ export default {
 /* Ensure burger menu button is visible only on small screens */
 .burger-button {
   display: none;
+
 }
 
 /* Display burger button on mobile screens */
 @media (max-width: 768px) {
   .burger-button {
     display: block;
+    background: transparent;
   }
 
   /* Hide navigation menu by default on mobile */
   nav.md\\:flex {
     display: none;
   }
+}
+
+.fork{
+  color: #f87193;
 }
 
 /* Navigation Menu Styles */
@@ -154,9 +160,15 @@ nav ul {
 
 nav.block ul {
   display: flex; /* Show menu items when menuOpen is true */
-  flex-direction: column; /* Stack items vertically on mobile */
-  width: 100%; /* Full width for mobile menu */
-  padding: 1rem 0; /* Padding around menu items */
+  flex-direction: column;
+  background-color: #1a202c; /* Match the header background */
+  width: 100%; /* Ensure it spans the full width */
+  padding: 1rem 0;
+}
+
+nav ul li {
+  margin: 0.5rem 0; /* Add spacing between items */
+  text-align: center; /* Center-align menu items */
 }
 
 /* Align items horizontally on larger screens */
@@ -175,8 +187,11 @@ nav ul li {
 
 /* Style brand name */
 h1 {
-  font-family: "Playfair Display", serif;
-  font-size: 1.5rem;
-  color: #ff77a9;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  margin-left: 0px;
+  color: #2c2f4b;
+  font-style: italic;
 }
+
 </style>

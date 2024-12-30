@@ -118,6 +118,7 @@ export default {
 body {
   margin: 0;
   font-family: Arial, sans-serif;
+  background: linear-gradient(90deg, hsl(229, 69%, 87%), white, #f4ccec)
 }
 
 #app {
