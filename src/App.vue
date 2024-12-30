@@ -1,24 +1,32 @@
 <template>
   <div id="app">
+
+    <!-- Render the routed components here -->
+    
     <AppHeader :cartCount="cartQuantity" @navigate="currentPage = $event" />
-    <!-- <AppBanner /> -->
+
+    <!-- Conditional Cart Display -->
+    <AppCart
+      v-if="$route.name === 'AppMenu' || $route.name === 'Contact'"
+      :cartItems="cartItems"
+      :total="total"
+      @increase-quantity="handleIncreaseQuantity"
+      @decrease-quantity="handleDecreaseQuantity"
+      @checkout="handleCheckout"
+      @clear-cart="clearCart"
+    />
     <div class="content-container">
-      <main class="pt-[64px] w-full px-4 overflow-visible">
-        <!-- Add top padding equal to the header height -->
-        <AppHome v-if="currentPage === 'home'" @navigate="currentPage = $event"/>
-        <AppMenu v-if="currentPage === 'menu'" @add-to-cart="handleAddToCart" />    
-        <ContactsPage v-if="currentPage === 'contact'" />
-        <CartPage
-          v-if="currentPage === 'cart'"
-          :cartItems="cartItems"
-          :total="total"
-          @clear-cart="clearCart"
-          @clear-cartb = "clearCartb"
-          @checkout="handleCheckout"
-          @increase-quantity="handleIncreaseQuantity" @decrease-quantity="handleDecreaseQuantity"
-        />
-      </main>
-      <AppCart v-if = "currentPage != 'cart'" :cartItems="cartItems" :total="total" @increase-quantity="handleIncreaseQuantity" @decrease-quantity="handleDecreaseQuantity" @checkout="handleCheckout" @clear-cart="clearCart"/>
+      <!-- <AppBanner v-if="$route.name === 'Home'" /> -->
+
+      <router-view 
+      :cartItems="cartItems" 
+      :total="total" 
+      @clear-cart="clearCart" 
+      @clear-cartb="clearCartb" 
+      @checkout="handleCheckout"
+      @add-to-cart="handleAddToCart"
+      @increase-quantity="handleIncreaseQuantity" 
+      @decrease-quantity="handleDecreaseQuantity"> </router-view>
     </div>
     <AppFooter />
   </div>
@@ -26,29 +34,20 @@
 
 <script>
 import AppHeader from "./components/Header.vue";
-import AppHome from "./components/Home.vue";
 import AppBanner from "./components/Banner.vue";
-import AppMenu from "./components/Menu.vue";
-import AppCart from "./components/Cart.vue";
-import CartPage from "./components/CartPage.vue";
 import AppFooter from "./components/Footer.vue";
-import ContactsPage from "./components/ContactsPage.vue";
+import AppCart from "./components/Cart.vue";
 
 export default {
   name: "App",
   components: {
     AppHeader,
     AppBanner,
-    AppHome,
-    AppMenu,
-    CartPage,
     AppCart,
     AppFooter,
-    ContactsPage
   },
   data() {
     return {
-      currentPage: "home",
       cartItems: [],
     };
   },
@@ -118,12 +117,26 @@ export default {
 <style>
 body {
   margin: 0;
-  font-family: "Arial", sans-serif;
+  font-family: Arial, sans-serif;
   background: linear-gradient(90deg, hsl(229, 69%, 87%), white, #f4ccec)
 }
 
-/* .container {
-  max-width: 1200px;
-  margin: 0 auto;
-} */
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the app takes up the full viewport height */
+}
+
+.content-container {
+  flex: 1; /* Push the footer to the bottom when content is short */
+  padding: 20px;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 20px;
+  margin-top: auto; /* Allow footer to move to the end of content when scrolling */
+}
 </style>

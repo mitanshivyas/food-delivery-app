@@ -1,6 +1,6 @@
 module.exports = {
   // Base public path
-  publicPath: '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/food-delivery-app' : '/',
 
   // Output directory for build
   outputDir: 'dist',
