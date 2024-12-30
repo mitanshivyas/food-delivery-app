@@ -81,7 +81,7 @@
         <div
           v-for="item in menuItems"
           :key="item.id"
-          class="relative flex flex-col my-1 bg-white shadow-sm border border-slate-200 rounded-lg w-96 mr-1 ml-1"
+          class="relative flex flex-col my-1 bg-white shadow-sm border border-slate-200 rounded-lg w-96"
         >
           <div
             class="relative p-2 h-96 overflow-hidden rounded-xl bg-clip-border"
@@ -220,9 +220,7 @@ export default {
     },
   },
   created() {
-    this.fetchMenu("pizzas"); // Fetch default category
-  },
-  created() {
+    this.fetchMenu("pizzas"); // Fetch default category,
     this.fetchAllCategories();
   },
 };

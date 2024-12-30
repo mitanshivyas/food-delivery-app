@@ -28,7 +28,7 @@
       @increase-quantity="handleIncreaseQuantity" 
       @decrease-quantity="handleDecreaseQuantity"> </router-view>
     </div>
-    <AppFooter />
+    <AppFooter :class="footerClass"/>
   </div>
 </template>
 
@@ -49,9 +49,14 @@ export default {
   data() {
     return {
       cartItems: [],
+      stickyFooterRoutes: ["menu", "contact","cart"]
     };
   },
   computed: {
+    footerClass(){
+      return this.stickyFooterRoutes.includes(this.$route.name)?"sticky-footer":"";
+    },
+
     total() {
       return this.cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
     },
@@ -128,15 +133,14 @@ body {
 }
 
 .content-container {
-  flex: 1; /* Push the footer to the bottom when content is short */
-  padding: 20px;
+  min-height: calc(100vh - 40px); /* Adjust based on header and footer height */
+  padding-bottom: 20px; /*Space for non-sticky footer */
 }
 
 footer {
   background-color: #333;
   color: #fff;
   text-align: center;
-  padding: 10px 20px;
   margin-top: auto; /* Allow footer to move to the end of content when scrolling */
 }
 </style>

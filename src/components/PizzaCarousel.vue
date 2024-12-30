@@ -1,13 +1,13 @@
 <template>
-    <div class="carousel-container-wrapper" style="width: 100%; overflow: visible; position: relative; display: flex; justify-content: flex-end;">
-      <div class="relative h-[80vh] flex items-center justify-end w-[50vw]">
+    <div class="carousel-container-wrapper" style="width: 100%; overflow: visible">
+      <div class="relative items-center">
         <!-- Pizza Semicircle -->
         <div class="carousel-container relative"
              :style="{ width: '5vw', height: '75vh' }">
           <div
             v-for="(pizza, index) in pizzas"
             :key="index"
-            class="pizza-item absolute bg-cover cursor-pointer transition-all duration-700 ease-in-out"
+            class="pizza-item absolute bg-cover cursor-pointer transition duration:100 hover:shadow-lg rounded-full hover:bg-pink-300"
             :style="getPizzaStyle(index)"
             @click="setActiveIndex(index)"
           ></div>
@@ -15,16 +15,16 @@
       </div>
       <!-- Pizza Details -->
       <div v-if="activeIndex !== null" 
-        class="pizza-details absolute text-left transition-all duration-700 ease-in-out"
+        class="pizza-details  text-top"
         :style="{ 
-            bottom: '40%', 
-            left: '10%', 
+            top: '-25%', 
+            right: '-70%', 
             opacity: 1 
         }"
         >
 
-        <h2 class="text-2xl font-bold text-gray-800">{{ pizzas[activeIndex].name }}</h2>
-        <p class="text-gray-600">{{ pizzas[activeIndex].description }}</p>
+        <h2 class="text-2xl font-bold text-gray-800 transition duration-700 ease-in-out">{{ pizzas[activeIndex].name }}</h2>
+        <p class="text-gray-600 transition-all duration-700 ease-in-out">{{ pizzas[activeIndex].description }}</p>
       </div>
     </div>
   </template>
@@ -84,7 +84,7 @@
         }
   
         // Style for other pizzas
-        const radius = 370; // Radius of the semicircle
+        const radius = 320; // Radius of the semicircle
         const angle = angleStep * currentIndex - rotationOffset;
         const y = Math.cos((angle * Math.PI) / 180) * radius;
         const x = Math.sin((angle * Math.PI) / 180) * radius;
@@ -104,20 +104,23 @@
   </script>
   
   <style scoped>
-.carousel-container {
-  width: 100%; /* Adjust container size */
+.carousel-container { 
+    transform: rotate(-7deg)
+}
+
+ /* width: 100%; 
   height: 500px;
   position: relative;
 
   @media (max-width: 768px) {
-    transform: rotate(-10deg); /* Subtle rotation for better appearance */
+    transform: rotate(-10deg); 
   }
 
   @media (max-width: 480px) {
     width: 100%;
     transform: rotate(0deg);
   }
-}
+} */
 
 .pizza-item {
   width: 100px; /* Adjust size for smaller screens */
@@ -146,15 +149,20 @@
   font-family: 'Playfair Display', serif; /* Elegant font for the name */
   color: #2c3e50;
   font-size: 3rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  padding: 1;
+  margin-right: 43rem;
+  line-height: 40pt;
+
 }
 
 .pizza-details p {
   font-family: 'Roboto', sans-serif; /* Modern font for description */
   font-style: italic;
   color: #34495e;
+
   font-size: 1.5rem;
-  margin-top: 1;
+  margin-bottom: 0rem;
 }
 
 .pizza-details.v-visible {
