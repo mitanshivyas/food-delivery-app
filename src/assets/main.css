@@ -64,15 +64,15 @@ main {
   overflow: visible !important;
 }
 
-section {
+/* section {
   margin: 0 auto;
   padding: 0;
-  width: 100%; /* Ensure sections span the full width */
+  width: 100%; 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
+} */
 
 .bg-cover {
   width: 101%;

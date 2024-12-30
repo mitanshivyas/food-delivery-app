@@ -8,9 +8,9 @@
     <h2 class="lg:text-4xl md:text-2xl sm:text-xl text-white font-bold">Savor Every Bite🍴</h2>
   </section>
 
-  <section class="min-h-screen flex items-start">
+  <section class="min-h-screen flex justify-between content-start">
     <!-- Call to Action Card -->
-    <div class="order-now-section p-10 rounded-lg shadow-lg text-center  self-start">
+    <div class="order-now-section flex-auto p-10 rounded-lg shadow-lg text-center">
       <h3 class="Hungry text-3xl font-poppins font-bold mb-4">Hungry?</h3>
       <p class="tag text-lg font-poppins mb-6">Order your favorite meals now!</p>
       <!--<button
@@ -28,7 +28,7 @@
     </div>
 
     <!-- Pizza Carousel Section -->
-    <div class="hidden sm:flex md:hidden lg:flex carousel-right">
+    <div class="flex-auto hidden sm:flex md:hidden lg:flex carousel-right">
       <PizzaCarousel />
     </div>
 </section>

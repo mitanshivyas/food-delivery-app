@@ -1,13 +1,13 @@
 <template>
-    <div class="carousel-container-wrapper" style="width: 100%; overflow: visible; position: relative; display: flex; justify-content: flex-end;">
-      <div class="relative h-[80vh] flex items-center justify-end w-[50vw]">
+    <div class="carousel-container-wrapper" style="width: 100%; overflow: visible">
+      <div class="relative items-center">
         <!-- Pizza Semicircle -->
         <div class="carousel-container relative"
              :style="{ width: '5vw', height: '75vh' }">
           <div
             v-for="(pizza, index) in pizzas"
             :key="index"
-            class="pizza-item absolute bg-cover cursor-pointer transition-all duration-700 ease-in-out"
+            class="pizza-item absolute bg-cover cursor-pointer transition duration:100 hover:shadow-lg rounded-full hover:bg-pink-300"
             :style="getPizzaStyle(index)"
             @click="setActiveIndex(index)"
           ></div>
@@ -15,7 +15,7 @@
       </div>
       <!-- Pizza Details -->
       <div v-if="activeIndex !== null" 
-        class="pizza-details absolute text-left transition-all duration-700 ease-in-out"
+        class="pizza-details absolute text-bottom"
         :style="{ 
             bottom: '40%', 
             left: '10%', 
@@ -23,8 +23,8 @@
         }"
         >
 
-        <h2 class="text-2xl font-bold text-gray-800">{{ pizzas[activeIndex].name }}</h2>
-        <p class="text-gray-600">{{ pizzas[activeIndex].description }}</p>
+        <h2 class="text-2xl font-bold text-gray-800 transition duration-700 ease-in-out">{{ pizzas[activeIndex].name }}</h2>
+        <p class="text-gray-600 transition-all duration-700 ease-in-out">{{ pizzas[activeIndex].description }}</p>
       </div>
     </div>
   </template>
@@ -104,20 +104,23 @@
   </script>
   
   <style scoped>
-.carousel-container {
-  width: 100%; /* Adjust container size */
+.carousel-container { 
+    transform: rotate(-10deg)
+}
+
+ /* width: 100%; 
   height: 500px;
   position: relative;
 
   @media (max-width: 768px) {
-    transform: rotate(-10deg); /* Subtle rotation for better appearance */
+    transform: rotate(-10deg); 
   }
 
   @media (max-width: 480px) {
     width: 100%;
     transform: rotate(0deg);
   }
-}
+} */
 
 .pizza-item {
   width: 100px; /* Adjust size for smaller screens */
