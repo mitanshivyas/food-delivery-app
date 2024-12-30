@@ -81,28 +81,25 @@ section {
 .bg-cover {
   background-size: cover;
   background-position: center;
+  height: 50vh; /* Default height */
+  width: 100%;
+
+  @media (max-width: 768px) {
+    height: 15vh; /* Smaller height for medium and small screens */
+  }
+
+  @media (min-width: 1024px) {
+    height: 30vh; /* Larger height for desktops */
+  }
 }
 
 /* Pizza carousel scaling */
 .carousel-wrapper {
-  max-width: 1200px; /* Limit the maximum width */
-  width: 100%; /* Ensure it spans the full width of the parent */
-  margin: 0 auto;
-  height: 500px;
-  display: flex;
-  justify-content: center;
-  padding: 0 20px; /* Add padding for smaller screens */
-  position: relative; /* Ensure proper positioning for child elements */
-  overflow: visible;
+  display: none; /* Hide by default */
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
+@media (min-width: 1024px) {
   .carousel-wrapper {
-    padding: 0 10px; /* Reduce padding for very small screens */
-  }
-  .contacts-page .bg-cover {
-    margin-top: 0;
-    padding: 0;
+    display: flex; /* Show only on large screens */
   }
 }

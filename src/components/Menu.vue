@@ -1,24 +1,5 @@
 <template>
   <section class="min-h-screen flex flex-col">
-    <!-- Banner Section -->
-    <!-- <section
-      class="bg-cover bg-center h-64 flex items-center justify-center mt-0"
-      style="background-image: url('https://static.vecteezy.com/system/resources/previews/037/245/808/non_2x/ai-generated-beautuful-fast-food-background-with-copy-space-free-photo.jpg')"
-    >
-      <h2 class="text-3xl text-white font-bold">Our Menu</h2>
-    </section> -->
-    <!--Search Bar-->
-    <!-- <section class="container mx-auto py-4">
-      <div class="w-full border border-gray-300 rounded p-2 shadow-md hover:shadow-lg transition duration-50 ease-in-out transform hover:scale-110">
-        <input
-          v-model="searchQuery"
-          type="text"
-          placeholder="Search for items..."
-          class="w-full focus:outline-none"
-          @input="searchItems"
-        />
-      </div>
-    </section> -->
     <section class="container mx-auto py-4 mt-20">
       <div class="w-full max-w-sm min-w-[200px]">
         <div

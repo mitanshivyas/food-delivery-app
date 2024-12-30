@@ -36,13 +36,13 @@
     data() {
       return {
         pizzas: [
-          { image: "https://i.postimg.cc/ZRNSVnGb/03-1.png", name: "Veggie", description: "Loaded with veggies." },
-          { image: "https://i.postimg.cc/WzB5xjhm/04-1.png", name: "Pepperoni", description: "Topped with pepperoni slices and cheese." },
-          { image: "https://i.postimg.cc/XYCrVWXG/02-1.png", name: "Margherita", description: "Classic margherita with fresh tomatoes and basil." },
-          { image: "https://i.postimg.cc/tgDpbvdn/01-2.png", name: "BBQ Chicken", description: "Barbecue chicken with tangy sauce." },
-          { image: "https://i.postimg.cc/WzB5xjhm/04-1.png", name: "Tandoori Paneer", description: "Indian paneer with spices." },
-          { image: "https://i.postimg.cc/ZRNSVnGb/03-1.png", name: "Cheese Burst", description: "A cheesy delight with every bite." },
-          { image: "https://i.postimg.cc/tgDpbvdn/01-2.png", name: "Spicy Italian", description: "Hot and spicy Italian flavors." },
+          { image: "https://i.postimg.cc/fR8dyrJh/01-2.webp", name: "Veggie", description: "Loaded with veggies." },
+          { image: "https://i.postimg.cc/L88qc3vQ/02-1.webp", name: "Pepperoni", description: "Topped with pepperoni slices and cheese." },
+          { image: "https://i.postimg.cc/3rZx3Dks/04-1.webp", name: "Margherita", description: "Classic margherita with fresh tomatoes and basil." },
+          { image: "https://i.postimg.cc/9fPvyyHV/03-1.webp", name: "BBQ Chicken", description: "Barbecue chicken with tangy sauce." },
+          { image: "https://i.postimg.cc/fR8dyrJh/01-2.webp", name: "Tandoori Paneer", description: "Indian paneer with spices." },
+          { image: "https://i.postimg.cc/L88qc3vQ/02-1.webp", name: "Cheese Burst", description: "A cheesy delight with every bite." },
+          { image: "https://i.postimg.cc/3rZx3Dks/04-1.webp", name: "Spicy Italian", description: "Hot and spicy Italian flavors." },
         ],
         pizzaPositions: [], // Stores the positions of pizzas dynamically
         activeIndex: null, // Currently clicked pizza

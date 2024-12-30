@@ -16,7 +16,7 @@
       @clear-cart="clearCart"
     />
     <div class="content-container">
-      <AppBanner v-if="$route.name === 'Home'" />
+      <!-- <AppBanner v-if="$route.name === 'Home'" /> -->
 
       <router-view 
       :cartItems="cartItems" 
@@ -93,7 +93,6 @@ export default {
     },
     handleCheckout() {
       this.cartItems = [];
-      alert("Order Placed Successfully!");
     },
   },
   created() {
