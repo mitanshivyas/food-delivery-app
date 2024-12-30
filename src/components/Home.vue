@@ -14,6 +14,30 @@
       <PromoCard />
     </div>
     
+    <!-- How it Works Section -->
+    <section class="how-it-works">
+      <h2 class="how-it-works-title">How it Works</h2>
+      <div class="steps-container">
+        <div class="step">
+          <img src="https://i.postimg.cc/GtPsybNL/restaurant.png" alt="Pick Your Meals" class="step-icon" />
+          <p class="step-number">01</p>
+          <h3 class="step-title">Pick Your Meals</h3>
+          <p class="step-description">A new menu of 30+ options every week</p>
+        </div>
+        <div class="step">
+          <img src="https://i.postimg.cc/0j1wjzVX/cooking.png" alt="Cooked Fresh by Chefs" class="step-icon" />
+          <p class="step-number">02</p>
+          <h3 class="step-title">Cooked Fresh by Chefs</h3>
+          <p class="step-description">Our gourmet chefs do the prep, so you can do you.</p>
+        </div>
+        <div class="step">
+          <img src="https://i.postimg.cc/3RvG3XFD/tray.png" alt="Heat, Eat & Enjoy" class="step-icon" />
+          <p class="step-number">03</p>
+          <h3 class="step-title">Heat, Eat & Enjoy</h3>
+          <p class="step-description">No prep. No mess. Our meals arrive ready to heat and eat in minutes.</p>
+        </div>
+      </div>
+    </section>
 
     <!-- Pizza Carousel Section -->
     <div class="hidden sm:block md:hidden lg:block carousel-right">
@@ -133,10 +157,74 @@ h2 {
 }
 
 .promo-card-wrapper {
+  position: absolute;
+  justify-content: left;
+  width: 100%;
+  margin-left: -640px;
+  margin-top: -90px;
+}
+
+.how-it-works {
   position: relative;
-  justify-content: center;
-  width: 120%;
-  margin-left: -650px;
+  text-align: center;
+  margin: 0rem auto;
+  align-items: center;
+}
+
+.how-it-works-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #2a2d4a;
+  margin-bottom: 2rem;
+  margin-right: auto;
+}
+
+.steps-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-auto;
+}
+
+.step {
+  flex: 1;
+  text-align: center;
+  padding: 1rem;
+}
+
+.step-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1rem;
+  margin-left: 6rem;
+  align-items: center;
+}
+
+.step-number {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2a2d4a;
+  margin-bottom: 0.5rem;
+}
+
+.step-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2a2d4a;
+  margin-bottom: 0.5rem;
+}
+
+.step-description {
+  font-size: 1rem;
+  color: #393b45;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 </style>
 
