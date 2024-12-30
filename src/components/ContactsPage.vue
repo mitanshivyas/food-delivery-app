@@ -1,5 +1,5 @@
 <template>
-    <section class="min-h-screen flex flex-col items-center py-8">
+    <section class="min-h-screen flex flex-col items-center">
       <!-- Banner Section -->
       <section
         class="bg-cover bg-center h-64 flex items-center justify-center w-full"

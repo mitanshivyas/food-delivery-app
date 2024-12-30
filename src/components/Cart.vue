@@ -1,6 +1,7 @@
 <template>
    <aside
       class="fixed bottom-0 right-0 bg-gray-800 text-white w-80 pt-4 shadow-lg flex flex-col items-center"
+      style="z-index: 50;"
     >
     <!-- Toggle Button -->
     <button

@@ -1,25 +1,34 @@
 <template>
-    <div class="carousel-container-wrapper" style="width: 100%; overflow: visible; position: relative;">
-    <div class="relative w-full h-[80vh] flex items-center justify-center">
-      <!-- Pizza Semicircle -->
-      <div class="carousel-container relative"
-      :style="{ width: '5vw', height: '75vh' }">
-        <div
-          v-for="(pizza, index) in pizzas"
-          :key="index"
-          class="pizza-item absolute bg-cover cursor-pointer transition-all duration-700 ease-in-out"
-          :style="getPizzaStyle(index)"
-          @click="setActiveIndex(index)"
-        ></div>
+    <div class="carousel-container-wrapper" style="width: 100%; overflow: visible; position: relative; display: flex; justify-content: flex-end;">
+      <div class="relative h-[80vh] flex items-center justify-end w-[50vw]">
+        <!-- Pizza Semicircle -->
+        <div class="carousel-container relative"
+             :style="{ width: '5vw', height: '75vh' }">
+          <div
+            v-for="(pizza, index) in pizzas"
+            :key="index"
+            class="pizza-item absolute bg-cover cursor-pointer transition-all duration-700 ease-in-out"
+            :style="getPizzaStyle(index)"
+            @click="setActiveIndex(index)"
+          ></div>
+        </div>
       </div>
-    </div>
       <!-- Pizza Details -->
-      <div v-if="activeIndex !== null" class="absolute top-2/3 right-19 transform -translate-y-1/2 text-left">
+      <div v-if="activeIndex !== null" 
+        class="pizza-details absolute text-left transition-all duration-700 ease-in-out"
+        :style="{ 
+            bottom: '40%', 
+            left: '10%', 
+            opacity: 1 
+        }"
+        >
+
         <h2 class="text-2xl font-bold text-gray-800">{{ pizzas[activeIndex].name }}</h2>
         <p class="text-gray-600">{{ pizzas[activeIndex].description }}</p>
       </div>
     </div>
   </template>
+  
   
   <script>
   export default {
@@ -125,5 +134,33 @@
     height: 60px;
   }
 }
+
+.pizza-details {
+  opacity: 0; /* Start invisible */
+  position: absolute;
+  transform: translateY(20px); /* Animate from slightly below */
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.pizza-details h2 {
+  font-family: 'Playfair Display', serif; /* Elegant font for the name */
+  color: #2c3e50;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.pizza-details p {
+  font-family: 'Roboto', sans-serif; /* Modern font for description */
+  font-style: italic;
+  color: #34495e;
+  font-size: 1.5rem;
+  margin-top: 1;
+}
+
+.pizza-details.v-visible {
+  opacity: 1; /* Make visible */
+  transform: translateY(0); /* Move to final position */
+}
+
   </style>
   

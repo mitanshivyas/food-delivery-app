@@ -1,5 +1,5 @@
 <template>
-  <section class="min-h-screen flex flex-col items-center bg-white">
+  <section class="min-h-screen flex flex-col items-center bg-lightPink">
     <!-- Banner Section -->
     <section
       class="bg-cover bg-center h-64 flex items-center justify-center mt-0"
@@ -9,22 +9,20 @@
     </section>
 
     <!-- Pizza Carousel Section -->
-    <div class="carousel-wrapper w-full flex justify-center py-8 px-4" style="height: 500px; overflow: visible;">
+    <div class="carousel-right">
       <PizzaCarousel />
     </div>
 
     <!-- Call to Action Card -->
-    <div class="flex-1 flex items-center justify-center mt-16">
-      <div class="bg-yellow-200 p-10 rounded shadow-md text-center">
-        <h3 class="text-3xl font-bold text-gray-800 mb-4">Hungry?</h3>
-        <p class="text-lg text-gray-600 mb-6">Order your favorite meals now!</p>
-        <button
-          @click="$emit('navigate', 'menu')"
-          class="bg-pink-500 text-white px-6 py-3 rounded hover:shadow-lg transition duration-50 ease-in-out transform hover:scale-110 hover:bg-pink-600"
-        >
-          Order Now
-        </button>
-      </div>
+    <div class="order-now-section bg-yellow-200 p-10 rounded shadow-md text-center mx-4 mt-4 self-start">
+      <h3 class="text-3xl font-bold text-gray-800 mb-4">Hungry?</h3>
+      <p class="text-lg text-gray-600 mb-6">Order your favorite meals now!</p>
+      <button
+        @click="$emit('navigate', 'menu')"
+        class="bg-pink-500 text-white px-6 py-3 rounded hover:shadow-lg transition duration-50 ease-in-out transform hover:scale-110 hover:bg-pink-600"
+      >
+        Order Now
+      </button>
     </div>
   </section>
 </template>
@@ -41,21 +39,39 @@ export default {
 </script>
 
 <style>
-.carousel-wrapper {
-  max-width: 100%;
+.home-section {
+  display: flex;
   width: 100%;
-  height: auto; /* Ensure the height is not constrained */
-  padding: 0 1rem;
-  overflow: visible; /* Allow pizzas to extend beyond bounds */
-
-  @media (max-width: 768px) {
-    padding: 0 0.5rem;
-  }
+  height: 100vh;
+  padding: 0 2rem;
+  align-items: center;
+  justify-content: space-between; /* Ensure items are separated */
 }
 
-section.min-h-screen {
-  overflow: visible; /* Prevent clipping at the root level */
+.content-left {
+  flex: 1; /* Take up available space on the left */
+  text-align: left;
 }
 
+.carousel-right {
+  flex-shrink: 0; /* Prevent shrinking */
+  width: 40%; /* Explicit width for the carousel */
+  display: flex;
+  justify-content: flex-end; /* Align the carousel to the extreme right */
+}
 
+.carousel-right > * {
+  margin-left: auto; /* Push carousel content to the right */
+}
+
+</style>
+
+<style scoped>
+.order-now-section {
+  max-width: 350px; /* Ensure the card has a consistent width */
+  position: absolute; /* Place it at the top-left corner */
+  top: 400px; /* Distance from the top */
+  left: 20px; /* Distance from the left */
+  z-index: 10; /* Ensure it appears above other content */
+}
 </style>
