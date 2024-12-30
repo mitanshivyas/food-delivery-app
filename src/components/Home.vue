@@ -9,14 +9,14 @@
     </section>
 
     <!-- Pizza Carousel Section -->
-    <div class="carousel-right">
+    <div class="hidden sm:flex md:hidden lg:flex carousel-right">
       <PizzaCarousel />
     </div>
 
     <!-- Call to Action Card -->
     <div class="order-now-section bg-yellow-200 p-10 rounded shadow-md text-center mx-4 mt-4 self-start">
-      <h3 class="text-3xl font-bold text-gray-800 mb-4">Hungry?</h3>
-      <p class="text-lg text-gray-600 mb-6">Order your favorite meals now!</p>
+      <h3 class="text-3xl font-poppins font-bold text-gray-600 mb-4">Hungry?</h3>
+      <p class="text-lg font-poppins text-gray-600 mb-6">Order your favorite meals now!</p>
       <button
         @click="$emit('navigate', 'menu')"
         class="bg-pink-500 text-white px-6 py-3 rounded hover:shadow-lg transition duration-50 ease-in-out transform hover:scale-110 hover:bg-pink-600"
@@ -62,6 +62,17 @@ export default {
 
 .carousel-right > * {
   margin-left: auto; /* Push carousel content to the right */
+}
+
+button{
+  font-weight: bold;
+
+}
+
+h2{
+  font-family: 'Poppins', sans-serif;
+  font-style: italic;
+  color:rgb(246, 202, 69);
 }
 
 </style>

@@ -1,7 +1,15 @@
 <template>
   <header class="p-4 flex justify-between items-center fixed top-0 w-full z-50">
     <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-xl font-bold">Food Delivery</h1>
+      
+      <button @click="$emit('navigate', 'home')" class="flex items-center space-x-2">
+      
+        <!-- Clickable ChowTown text -->
+        <h1 class="text-xl font-bold hover:text-gray-400">Mitanshi's Mania</h1>
+        <!-- Add food icon -->
+        <font-awesome-icon :icon="['fas', 'utensils']" class="text-pink-500 text-2xl" />
+      </button>
+      
       <!-- Burger Menu -->
       <button class="burger-button" @click="toggleMenu">
         <font-awesome-icon :icon="menuOpen ? 'times' : 'bars'" class="text-xl" />
@@ -33,11 +41,11 @@
 
 <script>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faShoppingCart, faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart, faBars, faTimes, faUtensils } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 // Add icons to FontAwesome library
-library.add(faShoppingCart, faBars, faTimes);
+library.add(faShoppingCart, faBars, faTimes, faUtensils);
 
 export default {
   name: "AppHeader",
@@ -109,6 +117,14 @@ nav ul li {
   nav ul li {
     margin: 0; /* Reset margin for horizontal layout */
   }
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  margin-left: -150px;
+  color: #FF77A9;
+  font-style: bold;
 }
 
 </style>

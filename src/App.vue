@@ -92,7 +92,6 @@ export default {
     },
     handleCheckout() {
       this.cartItems = [];
-      alert("Order Placed Successfully!");
     },
   },
   created() {
