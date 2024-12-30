@@ -2,10 +2,10 @@
   <section class="min-h-screen flex flex-col items-center bg-lightPink">
     <!-- Banner Section -->
     <section
-      class="bg-cover bg-center h-64 flex items-center justify-center mt-0"
+      class="bg-cover bg-center w-full h-64 flex items-center justify-center"
       style="background-image: url('https://static.vecteezy.com/system/resources/previews/037/245/808/non_2x/ai-generated-beautuful-fast-food-background-with-copy-space-free-photo.jpg')"
     >
-      <h2 class="text-3xl text-white font-bold">Our Menu</h2>
+      <h2 class="lg:text-4xl md:text-2xl sm:text-xl text-white font-bold">Savor Every Bite🍴</h2>
     </section>
 
     <!-- Pizza Carousel Section -->

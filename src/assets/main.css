@@ -82,6 +82,7 @@ section {
   background-size: cover;
   background-position: center;
   height: 50vh; /* Default height */
+  width: 100%;
 
   @media (max-width: 768px) {
     height: 15vh; /* Smaller height for medium and small screens */
