@@ -61,7 +61,7 @@ nav button {
 }
 
 nav button:hover {
-  background-color: #ff85a1; /* Slightly darker pastel pink */
+  background-color: #8979c2; /* Slightly darker pastel pink */
 }
 
 main {
@@ -90,4 +90,16 @@ main {
   @media (min-width: 1024px) {
     height: 50vh;
   }
+}
+
+.sticky-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 20px;
+  z-index: 10;
 }

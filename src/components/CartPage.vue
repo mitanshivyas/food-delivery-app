@@ -20,75 +20,114 @@
     </div>
   </div>
 
-  <section class="container mx-auto py-8">
-    <h2 class="text-2xl font-bold text-center mt-20 mb-6">Your Cart</h2>
-    <div v-if="cartItems.length > 0">
-      <div class="grid grid-cols-1 gap-6">
-  <div
-    v-for="item in cartItems"
-    :key="item.id"
-    class="max-w-sm w-full lg:max-w-full lg:flex mx-auto"
-  >
-    <!-- Left Section: Image -->
-    <div
-      class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-      :style="{ backgroundImage: `url(${item.img})` }"
-      :title="item.name"
-    >
-    </div>
+  <section class="font-sans max-w-5xl max-md:max-w-xl mx-auto bg-transparent py-8 mt-20 rounded-t">
+    <h1 class="text-3xl font-bold text-gray-800 text-center">Your Order</h1>
 
-    <!-- Right Section: Content -->
-    <div
-      class="max-w-sm w-full lg:max-w-full lg:flex border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal"
-    >
-      <div class="mb-8">
-        <div class="text-gray-900 font-bold text-xl mb-2">{{ item.name }}</div>
-        <p class="text-gray-700 text-base">{{ item.description }}</p>
-        <p class="font-bold">Price: ${{ item.price.toFixed(2) }}</p>
-      </div>
-      <div class="flex items-center justify-between">
-        <!-- Quantity Controls -->
-        <p class="text-sm text-gray-500">
-          Quantity:
-          <button
-            @click="$emit('decrease-quantity', item)"
-            class="bg-gray-300 text-black px-2 rounded"
-          >
-            -
-          </button>
-          <span class="px-2">{{ item.quantity }}</span>
-          <button
-            @click="$emit('increase-quantity', item)"
-            class="bg-gray-300 text-black px-2 rounded"
-          >
-            +
-          </button>
-        </p>
-        <!-- Total Price -->
-        <p class="text-lg font-bold">${{ (item.price * item.quantity).toFixed(2) }}</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-      <div class="mt-8 text-right">
-        <p class="text-xl font-bold">Total: ${{ total }}</p>
-        <button
-          class="bg-green-500 text-white px-6 py-3 rounded mt-4 hover:bg-green-600"
-          @click="handleCheckout"
+    <div v-if="cartItems.length > 0" class="grid md:grid-cols-3 gap-8 mt-16">
+      <!-- Cart Items -->
+      <div class="md:col-span-2 space-y-4 ">
+        <div
+          v-for="item in cartItems"
+          :key="item.id"
+          class="grid grid-cols-3 items-start gap-4 bg-gray-100 p-2 rounded shadow-[0_2px_12px_-3px_rgba(6,81,237,0.3)]"
         >
-          Checkout
-        </button>
-        <button
-          class="bg-red-500 text-white px-6 py-3 rounded mt-4 hover:bg-red-600"
-          @click="handleClearCart"
+          <div class="col-span-2 flex items-start gap-4">
+            <div
+              class="w-64 h-48 max-sm:w-24 max-sm:h-24 shrink-0 rounded-md"
+            >
+              <img
+                :src="item.img"
+                :alt="item.name"
+                class="w-full h-full object-contain"
+              />
+            </div>
+
+            <div class="flex flex-col">
+              <h3 class="text-base font-bold text-gray-800">{{ item.name }}</h3>
+
+            </div>
+          </div>
+
+          <div class="ml-auto">
+            <h4 class="text-lg max-sm:text-base font-bold text-gray-800">
+              ${{ (item.price * item.quantity).toFixed(2) }}
+            </h4>
+
+            <div
+              class="mt-6 flex items-center px-3 py-1.5 border border-gray-300 text-gray-800 text-xs outline-none bg-transparent rounded-md"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-2.5 fill-current cursor-pointer"
+                viewBox="0 0 124 124"
+                @click="$emit('decrease-quantity', item)"
+              >
+                <path d="M112 50H12C5.4 50 0 55.4 0 62s5.4 12 12 12h100c6.6 0 12-5.4 12-12s-5.4-12-12-12z"></path>
+              </svg>
+
+              <span class="mx-3 font-bold">{{ item.quantity }}</span>
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-2.5 fill-current cursor-pointer"
+                viewBox="0 0 42 42"
+                @click="$emit('increase-quantity', item)"
+              >
+                <path
+                  d="M37.059 16H26V4.941C26 2.224 23.718 0 21 0s-5 2.224-5 4.941V16H4.941C2.224 16 0 18.282 0 21s2.224 5 4.941 5H16v11.059C16 39.776 18.282 42 21 42s5-2.224 5-4.941V26h11.059C39.776 26 42 23.718 42 21s-2.224-5-4.941-5z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <hr class="border-gray-300" />
+      </div>
+
+      <!-- Order Summary -->
+      <div class="bg-gray-100 rounded-md p-4 h-max">
+        <h3
+          class="text-lg max-sm:text-base font-bold text-gray-800 border-b border-gray-300 pb-2"
         >
-          Clear Cart
-        </button>
+          Order Summary
+        </h3>
+
+        <ul class="text-gray-800 mt-6 space-y-3">
+          <li class="flex flex-wrap gap-4 text-sm">
+            Subtotal <span class="ml-auto font-bold">${{ total }}</span>
+          </li>
+          <li class="flex flex-wrap gap-4 text-sm">
+            Shipping <span class="ml-auto font-bold">$5.00</span>
+          </li>
+          <li class="flex flex-wrap gap-4 text-sm">
+            Tax <span class="ml-auto font-bold">${{ (0.0625*total).toFixed(2) }}</span>
+          </li>
+          <hr class="border-gray-300" />
+          <li class="flex flex-wrap gap-4 text-sm font-bold">
+            Total <span class="ml-auto">${{ total }}</span>
+          </li>
+        </ul>
+
+        <div class="mt-6 space-y-3">
+          <button
+            type="button"
+            @click="handleCheckout"
+            class="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-gray-800 hover:bg-gray-900 text-white rounded-md"
+          >
+            Checkout
+          </button>
+          <button
+            type="button"
+            @click="navigateTo('/menu')"
+            class="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-transparent text-gray-800 border border-gray-300 rounded-md"
+          >
+            Continue Shopping
+          </button>
+        </div>
       </div>
     </div>
-    <div v-else class="text-center">
+
+    <div v-else class="text-center mt-10">
       <p class="text-lg text-gray-500">Your cart is empty.</p>
     </div>
     <div
@@ -128,14 +167,26 @@ export default {
       type: String,
       required: true,
     },
+    shipping_cost: {
+      type: String,
+      required: true,
+    },
+    tax: {
+      type: String,
+      required: true,
+    },
   },
   data() {
     return {
       showNotification: false,
       showConfirmation: false,
+
     };
   },
   methods: {
+    navigateTo(route) {
+      this.$router.push(route);
+    },
     handleCheckout() {
       this.$emit("checkout"); // Clear the cart
       this.showNotification = true; // Show notification

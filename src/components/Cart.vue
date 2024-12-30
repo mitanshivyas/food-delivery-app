@@ -1,12 +1,12 @@
 <template>
   <aside
-     class="fixed bottom-0 right-0 bg-gray-800 text-white w-80 pt-4 shadow-lg flex flex-col items-center"
+     class="fixed bottom-0 right-0 bg-gray-800 text-white w-80 pt-4 shadow-lg flex flex-col items-center rounded-t-lg"
      style="z-index: 50;"
    >
    <!-- Toggle Button -->
    <button
      @click="toggleCollapse"
-     class="w-[90%] bg-gray-700 text-white px-4 py-2 text-center font-bold rounded shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+     class="w-[90%] bg-gray-700 text-white px-4 py-2 text-center font-bold rounded shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105 mb-2"
    >
      {{ collapsed ? "Show Cart" : "Hide Cart" }}
    </button>
@@ -34,7 +34,7 @@
 
    <!-- Cart Content -->
    <div v-if="!collapsed" class="flex flex-col">
-     <h3 class="text-xl font-bold mb-4 p-2 text-center">Your Cart</h3>
+     <h3 class="text-xl font-bold mb-2 p-1 text-center">Your Cart</h3>
      <!-- Scrollable Items Section -->
      <div class="flex-grow overflow-y-auto p-4 scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-800" :style="{ maxHeight: 'calc(70vh - 120px)' }">
        
@@ -42,7 +42,7 @@
          <li
            v-for="(item, index) in cartItems"
            :key="index"
-           class="flex justify-between items-center p-2 bg-gray-700 rounded"
+           class="flex justify-between items-center p-2 bg-gray-700 rounded mb-1"
          >
            <div class="flex items-center">
              <img
@@ -80,7 +80,7 @@
        <button
          v-if="cartItems.length"
          @click="handleCheckout"
-         class="bg-yellow-400 text-white px-4 py-2 rounded w-full shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+         class="bg-green-400 text-white px-4 py-2 rounded w-full shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
        >
          Checkout
        </button>
