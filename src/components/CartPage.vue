@@ -21,7 +21,7 @@
     </div>
   
     <section class="container mx-auto py-8">
-      <h2 class="text-2xl font-bold text-center mb-6">Your Cart</h2>
+      <h2 class="text-2xl font-bold text-center mt-20 mb-6">Your Cart</h2>
       <div v-if="cartItems.length > 0">
         <div class="grid grid-cols-1 gap-6">
           <div

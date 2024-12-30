@@ -1,12 +1,12 @@
 <template>
-  <section class="min-h-screen flex flex-col items-center bg-lightPink">
+  <section class="min-h-screen flex flex-col items-center bg-lightPink ">
     <!-- Banner Section -->
     <section
-      class="bg-cover bg-center w-full h-64 flex items-center justify-center"
+      class="bg-cover bg-center w-full h-64 flex items-center justify-center mt-19"
       style="background-image: url('https://static.vecteezy.com/system/resources/previews/037/245/808/non_2x/ai-generated-beautuful-fast-food-background-with-copy-space-free-photo.jpg')"
     >
-      <h2 class="lg:text-4xl md:text-2xl sm:text-xl text-white font-bold">Savor Every Bite🍴</h2>
-    </section>
+    <h2 class="lg:text-4xl md:text-2xl sm:text-xl text-white font-bold">Savor Every Bite🍴</h2>
+  </section>
 
     <!-- Pizza Carousel Section -->
     <div class="hidden sm:flex md:hidden lg:flex carousel-right">
@@ -17,12 +17,18 @@
     <div class="order-now-section bg-yellow-200 p-10 rounded shadow-md text-center mx-4 mt-4 self-start">
       <h3 class="text-3xl font-poppins font-bold text-gray-600 mb-4">Hungry?</h3>
       <p class="text-lg font-poppins text-gray-600 mb-6">Order your favorite meals now!</p>
-      <button
+      <!--<button
         @click="$emit('navigate', 'menu')"
         class="bg-pink-500 text-white px-6 py-3 rounded hover:shadow-lg transition duration-50 ease-in-out transform hover:scale-110 hover:bg-pink-600"
       >
         Order Now
-      </button>
+      </button> -->
+      <button
+        @click=" navigateTo('/menu')"
+        class="bg-pink-500 text-white px-6 py-3 rounded hover:shadow-lg transition duration-50 ease-in-out transform hover:scale-110 hover:bg-pink-600"
+      >
+        Order Now
+      </button> 
     </div>
 
     <!-- Promo Card Section -->
@@ -41,6 +47,11 @@ export default {
   components: {
     PizzaCarousel,
     PromoCard,
+  },
+  methods: {
+    navigateTo(route) {
+      this.$router.push(route); // Programmatically navigate to the route
+    },
   },
 };
 </script>

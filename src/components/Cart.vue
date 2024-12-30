@@ -127,13 +127,16 @@ export default {
    };
  },
  methods: {
+    goToCheckout(){
+      this.$router.push('/cart') // Programmatically navigate to Checkout page
+    },
    toggleCollapse() {
      this.collapsed = !this.collapsed;
    },
    handleCheckout() {
-     this.$emit("checkout"); // Clear the cart
+    //  this.$emit("checkout"); // Clear the cart
      this.showNotification = true; // Show notification
-
+     this.$router.push('/cart')
      // Hide the notification after 3 seconds
      setTimeout(() => {
        this.showNotification = false;
