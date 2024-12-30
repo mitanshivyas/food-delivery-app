@@ -9,10 +9,11 @@ const routes = [
   { path: '/menu', name: 'AppMenu',component: MenuPage},
   { path: '/contact', name: 'Contact',component: ContactPage },
   { path: '/cart', name: 'Cart',component: CartPage },
+  { path: '/:pathMatch(.*)*', redirect: '/' },
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.NODE_ENV === 'production' ? '/food-delivery-app' : '/'),
+  history: createWebHistory(process.env.BASE_URL),
   routes,
 });
 
