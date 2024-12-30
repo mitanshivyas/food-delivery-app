@@ -2,7 +2,8 @@
   <div id="app">
     <AppHeader :cartCount="cartQuantity" @navigate="currentPage = $event" />
     <!-- <AppBanner /> -->
-    <main class="pt-[64px]"> <!-- Add top padding equal to the header height -->
+    <main class="pt-[64px] w-full px-4 overflow-visible">
+      <!-- Add top padding equal to the header height -->
       <AppHome v-if="currentPage === 'home'" @navigate="currentPage = $event"/>
       <AppMenu v-if="currentPage === 'menu'" @add-to-cart="handleAddToCart" />    
       <ContactsPage v-if="currentPage === 'contact'" />
@@ -118,4 +119,9 @@ body {
   margin: 0;
   font-family: "Arial", sans-serif;
 }
+
+/* .container {
+  max-width: 1200px;
+  margin: 0 auto;
+} */
 </style>

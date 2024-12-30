@@ -2,13 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  overflow: visible !important;
+}
+
 html {
   @apply scrollbar scrollbar-thumb-gray-500 scrollbar-track-gray-800;
 }
-
-.bg-cover {
-  background-size: cover;
-  background-position: center;
+header {
+  z-index: 1000; /* Ensure it stays above all content */
 }
 nav {
   display: flex; /* Align items horizontally */
@@ -33,18 +35,41 @@ body {
 
 main {
   flex: 1; /* Push footer to the bottom */
+  overflow: visible !important;
 }
 
-header + section {
-  margin-top: 0; /* Ensure no gap between header and the next section */
-}
 section {
-  margin: 0; /* Ensure no gaps for all sections */
-  padding: 0; /* Reset padding for sections */
+  margin: 0 auto;
+  padding: 2rem 0;
+  width: 100%; /* Ensure sections span the full width */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-header + section,
-section:first-of-type {
-  margin: 0;
-  padding: 0;
+/* Ensuring the banner scales properly */
+.bg-cover {
+  background-size: cover;
+  background-position: center;
+}
+
+/* Pizza carousel scaling */
+.carousel-wrapper {
+  max-width: 1200px; /* Limit the maximum width */
+  width: 100%; /* Ensure it spans the full width of the parent */
+  margin: 0 auto;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  padding: 0 20px; /* Add padding for smaller screens */
+  position: relative; /* Ensure proper positioning for child elements */
+  overflow: visible;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .carousel-wrapper {
+    padding: 0 10px; /* Reduce padding for very small screens */
+  }
 }
