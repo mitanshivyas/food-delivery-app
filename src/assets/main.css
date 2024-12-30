@@ -52,7 +52,7 @@ header {
 nav button {
   color: white; /* White text for navigation buttons */
   font-weight: bold;
-  background-color: #ff69b4; /* Pastel pink highlight */
+  background-color: #FACC15CC; /* Pastel pink highlight */
   padding: 0.5rem 1rem;
   border-radius: 8px;
   transition: background-color 0.3s ease;
