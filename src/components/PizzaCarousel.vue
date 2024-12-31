@@ -8,7 +8,7 @@
             :key="index"
             class="pizza-item absolute bg-cover cursor-pointer transition duration-50 rounded-full"
             :class="{ 'hover:shadow-lg hover:bg-pink-300': activeIndex !== index }"
-            :style="{ ...getPizzaStyle(index), transition: 'all 0.5s ease-in-out' }"
+            :style="{ ...getPizzaStyle(index), transition: 'all 0.6s ease-in-out' }"
             @click="setActiveIndex(index)"
           ></div>
         </div>
@@ -16,17 +16,17 @@
       <!-- Pizza Details -->
       <div
         v-if="activeIndex !== null"
-        class="pizza-details text-top"
+        class="pizza-details"
+        :class="{ 'v-visible': activeIndex !== null }"
         :style="{
           top: '-25%',
           right: '-70%',
-          opacity: 1,
         }"
       >
-        <h2 class="text-2xl font-bold text-gray-800 transition duration-700 ease-in-out">
+        <h2 class="text-2xl font-bold text-gray-800">
           {{ pizzas[activeIndex].name }}
         </h2>
-        <p class="text-gray-600 transition-all duration-700 ease-in-out">
+        <p class="text-gray-600">
           {{ pizzas[activeIndex].description }}
         </p>
       </div>
@@ -34,78 +34,95 @@
   </template>
   
   <script>
-  export default {
-    name: "PizzaCarouselVerticalSemiCircle",
-    data() {
+export default {
+  name: "PizzaCarouselVerticalSemiCircle",
+  data() {
+    return {
+      pizzas: [
+        { image: "https://i.postimg.cc/3rZx3Dks/04-1.webp", name: "Margherita", description: "Classic margherita with fresh tomatoes and basil." },
+        { image: "https://i.postimg.cc/fR8dyrJh/01-2.webp", name: "Veggie", description: "Loaded with veggies." },
+        { image: "https://i.postimg.cc/L88qc3vQ/02-1.webp", name: "Pepperoni", description: "Topped with pepperoni slices and cheese." },
+        { image: "https://i.postimg.cc/9fPvyyHV/03-1.webp", name: "BBQ Chicken", description: "Barbecue chicken with tangy sauce." },
+        { image: "https://i.postimg.cc/fR8dyrJh/01-2.webp", name: "Tandoori Paneer", description: "Indian paneer with spices." },
+        { image: "https://i.postimg.cc/L88qc3vQ/02-1.webp", name: "Cheese Burst", description: "A cheesy delight with every bite." },
+        { image: "https://i.postimg.cc/3rZx3Dks/04-1.webp", name: "Spicy Italian", description: "Hot and spicy Italian flavors." },
+      ],
+      pizzaPositions: [], // Stores the positions of pizzas dynamically
+      activeIndex: 0, // Currently clicked pizza
+      rotationInterval: null, // Interval ID for continuous rotation
+      isPaused: false, // Flag to pause rotation temporarily
+    };
+  },
+  created() {
+    this.initializePositions();
+    this.startContinuousRotation(); // Start the rotation animation
+  },
+  beforeDestroy() {
+    clearInterval(this.rotationInterval); // Clear the interval on component destroy
+  },
+  methods: {
+    initializePositions() {
+      this.pizzaPositions = this.pizzas.map((_, index) => index);
+    },
+    setActiveIndex(index) {
+      if (this.activeIndex === index) return;
+
+      this.isPaused = true; // Pause the rotation
+      this.activeIndex = index;
+
+      // Rearrange positions for the clicked pizza
+      this.pizzaPositions = this.pizzaPositions.map((pos) =>
+        (pos - this.pizzaPositions[index] + this.pizzas.length) % this.pizzas.length
+      );
+
+      // Resume rotation after a short delay
+      setTimeout(() => {
+        this.isPaused = false;
+      }, 2500);
+    },
+    getPizzaStyle(index) {
+      const totalPizzas = this.pizzas.length;
+      const currentIndex = this.pizzaPositions[index];
+      const angleStep = 180 / (totalPizzas - 1);
+      const rotationOffset = 10;
+
+      if (currentIndex === 0) {
+        return {
+          transform: "translate(-50%, -50%) scale(6)",
+          top: "20%",
+          left: "85%",
+          backgroundImage: `url(${this.pizzas[index].image})`,
+          zIndex: 10,
+        };
+      }
+
+      const radius = 320;
+      const angle = angleStep * currentIndex - rotationOffset;
+      const y = Math.cos((angle * Math.PI) / 180) * radius;
+      const x = Math.sin((angle * Math.PI) / 180) * radius;
+
       return {
-        pizzas: [
-          { image: "https://i.postimg.cc/3rZx3Dks/04-1.webp", name: "Margherita", description: "Classic margherita with fresh tomatoes and basil." },
-          { image: "https://i.postimg.cc/fR8dyrJh/01-2.webp", name: "Veggie", description: "Loaded with veggies." },
-          { image: "https://i.postimg.cc/L88qc3vQ/02-1.webp", name: "Pepperoni", description: "Topped with pepperoni slices and cheese." },
-          { image: "https://i.postimg.cc/9fPvyyHV/03-1.webp", name: "BBQ Chicken", description: "Barbecue chicken with tangy sauce." },
-          { image: "https://i.postimg.cc/fR8dyrJh/01-2.webp", name: "Tandoori Paneer", description: "Indian paneer with spices." },
-          { image: "https://i.postimg.cc/L88qc3vQ/02-1.webp", name: "Cheese Burst", description: "A cheesy delight with every bite." },
-          { image: "https://i.postimg.cc/3rZx3Dks/04-1.webp", name: "Spicy Italian", description: "Hot and spicy Italian flavors." },
-        ],
-        pizzaPositions: [], // Stores the positions of pizzas dynamically
-        activeIndex: 0, // Currently clicked pizza
+        transform: `translate(${x}px, ${-y}px) scale(0.8)`,
+        top: "10%",
+        left: "25%",
+        backgroundImage: `url(${this.pizzas[index].image})`,
+        zIndex: currentIndex < totalPizzas / 2 ? 5 : 1,
+        width: "120px",
+        height: "120px",
       };
     },
-    created() {
-      this.initializePositions();
-    },
-    methods: {
-      initializePositions() {
-        // Initialize the positions to match the pizza indices
-        this.pizzaPositions = this.pizzas.map((_, index) => index);
-      },
-      setActiveIndex(index) {
-        if (this.activeIndex === index) return; // Prevent re-clicking the same pizza
-  
-        this.activeIndex = index; // Set the clicked pizza as active
-  
-        // Rearrange the positions based on the clicked pizza
-        this.pizzaPositions = this.pizzaPositions.map((pos) =>
-          (pos - this.pizzaPositions[index] + this.pizzas.length) % this.pizzas.length
-        );
-      },
-      getPizzaStyle(index) {
-        const totalPizzas = this.pizzas.length;
-        const currentIndex = this.pizzaPositions[index];
-        const angleStep = 180 / (totalPizzas - 1); // Angle between positions in the semicircle
-        const rotationOffset = 10;
-  
-        // Active (center) pizza style
-        if (currentIndex === 0) {
-          return {
-            transform: "translate(-50%, -50%) scale(6)",
-            top: "20%",
-            left: "85%",
-            backgroundImage: `url(${this.pizzas[index].image})`,
-            zIndex: 10,
-          };
+    startContinuousRotation() {
+      this.rotationInterval = setInterval(() => {
+        if (!this.isPaused) {
+          const nextIndex = (this.activeIndex + 1) % this.pizzas.length;
+          this.setActiveIndex(nextIndex);
         }
-  
-        // Style for other pizzas
-        const radius = 320; // Radius of the semicircle
-        const angle = angleStep * currentIndex - rotationOffset;
-        const y = Math.cos((angle * Math.PI) / 180) * radius;
-        const x = Math.sin((angle * Math.PI) / 180) * radius;
-  
-        return {
-          transform: `translate(${x}px, ${-y}px) scale(0.8)`, // Vertical semicircle
-          top: "10%",
-          left: "25%",
-          backgroundImage: `url(${this.pizzas[index].image})`,
-          zIndex: currentIndex < totalPizzas / 2 ? 5 : 1, // Higher z-index for pizzas closer to the top
-          width: "120px",
-          height: "120px",
-        };
-      },
+      }, 2500); // Rotate every 3 seconds
     },
-  };
-  </script>
-  
+  },
+};
+</script>
+
   <style scoped>
   .carousel-container {
     transform: rotate(-7deg);
@@ -114,7 +131,7 @@
   .pizza-item {
     width: 100px; /* Adjust size for smaller screens */
     height: 100px;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
   
     @media (max-width: 768px) {
       width: 80px;
@@ -153,7 +170,7 @@
     margin-bottom: 0rem;
   }
   
-  .pizza-details.v-visible {
+  div.pizza-details.v-visible {
     opacity: 1; /* Make visible */
     transform: translateY(0); /* Move to final position */
   }
